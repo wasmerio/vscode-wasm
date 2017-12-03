@@ -5,6 +5,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.1] - 2017-12-04
+- Fix badges only.
+
 ## [1.0.0] - 2017-12-04
 ### Added
 - Open WebAssembly binary files from context menu.
