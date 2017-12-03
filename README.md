@@ -1,7 +1,7 @@
 # vscode-wasm
 
 [![GitHub issues](https://img.shields.io/github/issues/reklatsmasters/vscode-wasm.svg)](https://github.com/reklatsmasters/vscode-wasm/issues)
-[![GitHub license button](https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg)](https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE.md)
+[![GitHub license button](https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg)](https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE)
 [![VS Code marketplace button](https://vsmarketplacebadge.apphb.com/installs/reklatsmasters.vscode-wasm.svg)](https://marketplace.visualstudio.com/items?itemName=reklatsmasters.vscode-wasm)
 
 WebAssembly Toolkit for VSCode.
@@ -27,7 +27,7 @@ Right-click on a file in the explorer to see WebAssembly binary representation.
 
 ## Known Issues
 
-### I want to open .wasm files by left click on a file in the explorer!
+### I want to open .wasm files by left-click on a file in the explorer!
 
 I want too! It isn't possible due to vscode *feature*.
 
