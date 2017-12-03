@@ -3,7 +3,7 @@
     "displayName": "WebAssembly Toolkit for VSCode",
     "description": "WebAssembly Toolkit for VSCode",
     "version": "0.0.1",
-    "publisher": "reklatsmasters",
+    "publisher": "dtsvet",
     "license": "MIT",
     "engines": {
         "vscode": "^1.18.0"
