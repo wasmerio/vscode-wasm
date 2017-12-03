@@ -1,0 +1,93 @@
+{
+    "name": "vscode-wasm",
+    "displayName": "WebAssembly Toolkit for VSCode",
+    "description": "WebAssembly Toolkit for VSCode",
+    "version": "0.0.1",
+    "publisher": "reklatsmasters",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "bugs": {
+        "url": "https://github.com/reklatsmasters/vscode-wasm/issues"
+    },
+    "homepage": "https://github.com/reklatsmasters/vscode-wasm",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/reklatsmasters/vscode-wasm.git"
+    },
+    "categories": [
+        "Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "WebAssembly",
+                "extensions": [
+                    ".wasm"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "WebAssembly Text",
+                "extensions": [
+                    ".wat",
+                    ".wast"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "WebAssembly",
+                "scopeName": "source.wasm",
+                "path": "./syntaxes/webassembly.tmLanguage.json"
+            },
+            {
+                "language": "WebAssembly Text",
+                "scopeName": "source.wasm",
+                "path": "./syntaxes/webassembly.tmLanguage.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "wasm.wasm2wat",
+                "title": "Show WebAssembly",
+                "category": "wasm"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "wasm.wasm2wat",
+                    "when": "resourceLangId == WebAssembly"
+                }
+            ]
+        }
+    },
+    "keywords":[
+        "wasm",
+        "wast",
+        "webassembly",
+        "asm",
+        "web assembly"
+    ],
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}

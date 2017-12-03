@@ -1,0 +1,199 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "WebAssembly",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#section"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#numeric"
+		},
+		{
+			"include": "#linear-memory-accesses"
+		},
+		{
+			"include": "#resizing"
+		},
+		{
+			"include": "#calls"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#control"
+		},
+		{
+			"include": "#integer-operators"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "storage.type.wasm",
+					"match": "\\b(func|type)\\b"
+				},
+				{
+					"name": "variable.parameter.other.wasm",
+					"match": "(\\$){1}([\\w\\d]*)"
+				},
+				{
+					"name": "variable.parameter.wasm",
+					"match": "\\b(param)\\b"
+				}
+			]
+		},
+		"numeric": {
+			"patterns": [
+				{
+					"name": "constant.numeric.wasm",
+					"match": "[\\d]"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.character.wasm",
+					"match": "(;{2})(.*)$"
+				},
+				{
+					"name": "comment.block.wasm",
+					"begin": "\\(;",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.wasm"
+						}
+					},
+					"end": ";\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.wasm"
+						}
+					}
+				}
+			]
+		},
+		"section": {
+			"patterns": [
+				{
+					"name": "storage.type.wasm",
+					"match": "\\b(module|type|import|export|memory|table|start|result|elem|data)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.wasm",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.wasm",
+					"match": "\\\\."
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{
+					"name": "entity.name.type.wasm",
+					"match": "(i32|i64|f32|f64|anyfunc)"
+				}
+			]
+		},
+		"linear-memory-accesses": {
+			"patterns": [
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(store|store8|store16|store32)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(load|load8_s|load16_s|load32_s|load8_u|load16_u|load32_u)\\b"
+				}
+			]
+		},
+		"resizing": {
+			"patterns": [
+				{
+					"name": "support.function.wasm",
+					"match": "\\b(grow_memory|current_memory)\\b"
+				}
+			]
+		},
+		"calls": {
+			"patterns": [
+				{
+					"name": "support.function.wasm",
+					"match": "\\b(call|call_indirect)\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "keyword.other.wasm",
+					"match": "\\b(get_local|get_global|set_local|set_global|tee_local)\\b"
+				}
+			]
+		},
+		"control": {
+			"patterns": [
+				{
+					"name": "keyword.control.less.wasm",
+					"match": "\\b(nop|block|loop|if|else|br|br_if|br_table|end|return|drop|select|unreachable|local)\\b"
+				}
+			]
+		},
+		"integer-operators": {
+			"patterns": [
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b((div|gt|ge|lt|le)(_(s|u))?)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b((shr|rem)_(s|u))\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(const|add|sub|mul|abs|neg|ceil|floor|trunc|copysign|ceil|nearest|min|max|sqrt|and|or|xor|shl|rotl|rotr|eq|ne|clz|ctz|popcnt|eqz)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(wrap/i64|demote/f64|promote/f32)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(reinterpret/(i32|f32|i64|f64))\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(trunc_(s|u)/(f32|f64))\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(extend_(s|u)/i32)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(convert_(s|u)/(i32|i64))\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.wasm"
+}
