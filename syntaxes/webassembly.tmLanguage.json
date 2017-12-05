@@ -110,7 +110,7 @@
 			"patterns": [
 				{
 					"name": "entity.name.type.wasm",
-					"match": "(i32|i64|f32|f64|anyfunc)"
+					"match": "(i32|i64|f32|f64|anyfunc|v128)"
 				}
 			]
 		},
@@ -191,6 +191,30 @@
 				{
 					"name": "entity.name.function.wasm",
 					"match": "\\b(convert_(s|u)/(i32|i64))\\b"
+				}
+			]
+		},
+		"SIMD": {
+			"patterns": [
+				{
+					"name": "entity.name.type.wasm",
+					"match": "(i8x16|i16x8|i32x4|i64x2|f32x4|f64x2)"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(convert_(s|u)/(i32x4|i64x2))\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(trunc_(s|u)/(f32x4|f64x2):sat)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b((extract_lane|add_saturate|sub_saturate)(_(s|u))?)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b(splat|replace_lane|bitselect|any_true|shuffle)\\b"
 				}
 			]
 		}
