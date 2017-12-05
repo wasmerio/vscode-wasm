@@ -210,7 +210,11 @@
 				},
 				{
 					"name": "entity.name.function.wasm",
-					"match": "\\b((extract_lane|add_saturate|sub_saturate)(_(s|u))?)\\b"
+					"match": "\\b((extract_lane)(_(s|u))?)\\b"
+				},
+				{
+					"name": "entity.name.function.wasm",
+					"match": "\\b((add_saturate|sub_saturate)(_(s|u)))\\b"
 				},
 				{
 					"name": "entity.name.function.wasm",
