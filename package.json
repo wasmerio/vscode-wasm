@@ -5,6 +5,7 @@
     "version": "1.0.1",
     "publisher": "dtsvet",
     "license": "MIT",
+    "icon": "images/wasm-extension-icon.png",
     "engines": {
         "vscode": "^1.18.0"
     },
