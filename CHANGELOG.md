@@ -1,9 +1,8 @@
 # Change Log
 All notable changes to the "wasm" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
 ## [Unreleased]
+- Added icon (@bitjson)
 
 ## [1.0.1] - 2017-12-04
 - Fix badges only.
