@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "wasm" extension will be documented in this file.
 
-## [Unreleased]
+## [1.1.0] - 2018-04-09
 - Added icon ([@bitjson](https://github.com/bitjson))
 - Support large wasm files. Now a pure js wasm parser / printer [webassemblyjs] is used.(https://github.com/xtuc/webassemblyjs).
 
