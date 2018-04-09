@@ -2,8 +2,9 @@
 
 import { TextDocumentContentProvider, Uri, window } from 'vscode'
 import * as fs from 'fs'
+import { decode } from "@webassemblyjs/wasm-parser";
+import { print } from "@webassemblyjs/wast-printer"
 
-const wabt = require('../third_party/libwabt')
 const scheme = 'WebAssembly'
 
 /**
@@ -13,33 +14,12 @@ export default class WebAssemblyContentProvider implements TextDocumentContentPr
 
   public async provideTextDocumentContent(uri: Uri): Promise<string | undefined> {
     const buffer = await readFile(uri)
-    let wmodule
-    
+
     if (!buffer) {
       return
     }
-    
-    try {
-      wmodule = wabt.readWasm(buffer, {readDebugNames: false})
-      
-      wmodule.generateNames()
-      wmodule.applyNames()
-      
-      return wmodule.toText({foldExprs: false, inlineExport: false})
-    } catch(err) {
-      throw err;
-    } finally {
-      if (wmodule) {
 
-        // TODO: rebuild libwabt.js
-        if (!wmodule.lexer) {
-          wmodule.lexer = {
-            destroy() {}
-          }
-        }
-        wmodule.destroy()
-      }
-    }
+    return print(decode(buffer))
   }
 }
 
