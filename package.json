@@ -23,7 +23,8 @@
     ],
     "activationEvents": [
         "onLanguage:wasm",
-        "onCommand:wasm.wasm2wat"
+        "onCommand:wasm.wasm2wat",
+        "onCommand:wasm.save2wat"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -63,13 +64,38 @@
                 "command": "wasm.wasm2wat",
                 "title": "Show WebAssembly",
                 "category": "wasm"
+            },
+            {
+                "command": "wasm.save2wat",
+                "title": "Save WebAssembly as text file",
+                "category": "wasm"
             }
         ],
         "menus": {
             "explorer/context": [
                 {
                     "command": "wasm.wasm2wat",
-                    "when": "resourceLangId == wasm"
+                    "when": "resourceLangId == wasm",
+                    "group": "wasm"
+                },
+                {
+                    "command": "wasm.save2wat",
+                    "when": "resourceLangId == wasm",
+                    "group": "wasm"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "wasm.save2wat",
+                    "when": "resourceLangId == wasm",
+                    "group": "wasm"
+                }
+            ],
+            "editor/title/context": [
+                {
+                    "command": "wasm.save2wat",
+                    "when": "resourceLangId == wasm",
+                    "group": "wasm"
                 }
             ]
         }
