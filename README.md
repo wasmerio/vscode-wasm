@@ -8,28 +8,13 @@ WebAssembly Toolkit for VSCode.
 
 ## Features
 
-Syntax highlight for WebAssembly textual representation.
+* Syntax highlight for WebAssembly textual representation.
+* Preview WebAssembly Binary files in 2 clicks.
+* Fast convertation between text and binary view.
 
 ![Syntax highlight](images/preview-1.png)
 
-Right-click on a file in the explorer to see WebAssembly binary representation.
-
 ![Binary file](images/preview-2.png)
-
-## TODO
-
-* validate WebAssembly
-* save active .wasm file to .wat
-* ability to edit active .wasm file
-* show imports / exports in the explorer
-* memory (data section) preview
-* wasm2c
-
-## Known Issues
-
-### I want to open .wasm files by left-click on a file in the explorer!
-
-I want too! It isn't possible due to vscode *feature*.
 
 ## License
 
