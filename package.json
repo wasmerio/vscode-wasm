@@ -24,7 +24,8 @@
     "activationEvents": [
         "onLanguage:wasm",
         "onCommand:wasm.wasm2wat",
-        "onCommand:wasm.save2wat"
+        "onCommand:wasm.save2wat",
+        "onCommand:wasm.save2wasm"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -72,7 +73,12 @@
             },
             {
                 "command": "wasm.save2wat",
-                "title": "Save WebAssembly as text file",
+                "title": "Save as WebAssembly text file",
+                "category": "wasm"
+            },
+            {
+                "command": "wasm.save2wasm",
+                "title": "Save as WebAssembly binary file",
                 "category": "wasm"
             }
         ],
@@ -87,6 +93,11 @@
                     "command": "wasm.save2wat",
                     "when": "resourceLangId == wasm",
                     "group": "wasm"
+                },
+                {
+                    "command": "wasm.save2wasm",
+                    "when": "resourceLangId == wat",
+                    "group": "wasm"
                 }
             ],
             "editor/context": [
@@ -94,12 +105,22 @@
                     "command": "wasm.save2wat",
                     "when": "resourceLangId == wasm",
                     "group": "wasm"
+                },
+                {
+                    "command": "wasm.save2wasm",
+                    "when": "resourceLangId == wat",
+                    "group": "wasm"
                 }
             ],
             "editor/title/context": [
                 {
                     "command": "wasm.save2wat",
                     "when": "resourceLangId == wasm",
+                    "group": "wasm"
+                },
+                {
+                    "command": "wasm.save2wasm",
+                    "when": "resourceLangId == wat",
                     "group": "wasm"
                 }
             ]
@@ -126,7 +147,6 @@
         "vscode": "^1.1.17"
     },
     "dependencies": {
-        "@webassemblyjs/wasm-parser": "^1.4.3",
-        "@webassemblyjs/wast-printer": "^1.4.3"
+        "wabt": "^1.0.0-nightly.20180421"
     }
 }

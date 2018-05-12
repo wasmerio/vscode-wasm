@@ -4,7 +4,7 @@ import * as vscode from 'vscode'
 
 import WebAssemblyContentProvider from './webassembly-content-provider'
 import { Uri } from 'vscode'
-import { wasm2wat, writeFile, readFile } from './utils'
+import { wasm2wat, wat2wasm, writeFile, readFile } from './utils'
 
 const wasmScheme = 'wasm'
 
@@ -21,10 +21,6 @@ export function activate(context: vscode.ExtensionContext) {
     })
     
     const save2watCommand = vscode.commands.registerCommand('wasm.save2wat', (uri: Uri) => {
-        if (!uri) {
-            return
-        }
-
         const watPath = uri.path.replace(/\.wasm$/, '.wat')
         
         const saveDialogOptions = {
@@ -40,12 +36,29 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showSaveDialog(saveDialogOptions)
             .then(maybeSaveWat(from), vscode.window.showErrorMessage)
     })
+    
+    const save2wasmCommand = vscode.commands.registerCommand('wasm.save2wasm', (uri: Uri) => {
+        const wasmPath = uri.path.replace(/\.wat$/, '.wasm')
+        
+        const saveDialogOptions = {
+            filters: {
+                'WebAssembly Binary': ['wasm'],
+                'WebAssembly Text': ['wat', 'wast']
+            },
+            defaultUri: uri.with({ scheme: 'file', path: wasmPath })
+        }
+        
+        const from = uri.with({ scheme: 'file' })
+        
+        vscode.window.showSaveDialog(saveDialogOptions)
+            .then(maybeSaveWat(from), vscode.window.showErrorMessage)
+    })
 
     if (vscode.window.activeTextEditor) {
         showDocument(vscode.window.activeTextEditor.document);
     }
 
-    context.subscriptions.push(registration, openEvent, previewCommand, save2watCommand)
+    context.subscriptions.push(registration, openEvent, previewCommand, save2watCommand, save2wasmCommand)
 }
 
 export function deactivate() {
@@ -83,4 +96,21 @@ async function saveWat(from: vscode.Uri, to: vscode.Uri) {
     const watContent = wasm2wat(wasmContent)
     
     await writeFile(to, watContent)
+}
+
+function maybeSaveWasm(from: vscode.Uri) {
+    return (to: vscode.Uri | undefined) => {
+        if (!to) {
+            return
+        }
+        
+        return saveWasm(from, to)
+    }
+}
+
+async function saveWasm(from: vscode.Uri, to: vscode.Uri) {
+    const watContent = await readFile(from)
+    const wasmContent = wat2wasm(watContent)
+    
+    await writeFile(to, wasmContent)
 }

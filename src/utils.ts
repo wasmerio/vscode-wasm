@@ -1,7 +1,6 @@
 import { TextDocumentContentProvider, Uri, window } from 'vscode'
 import * as fs from 'fs'
-import { decode } from "@webassemblyjs/wasm-parser";
-import { print } from "@webassemblyjs/wast-printer"
+import * as wabt from 'wabt'
 
 /**
  * @param uri - path to the file.
@@ -51,5 +50,41 @@ export function writeFile(uri: Uri, content: Buffer | string): Promise<void> {
 }
 
 export function wasm2wat(content: Buffer): string {
-  return print(decode(content))
+  let wasmModule
+
+  try {
+    wasmModule = wabt.readWasm(content, { readDebugNames: true })
+    wasmModule.generateNames()
+    wasmModule.resolveNames()
+    wasmModule.applyNames()
+    
+    return wasmModule.toText({ foldExprs: false, inlineExport: false });
+  } catch(err) {
+    window.showErrorMessage(err.message)
+  } finally {
+    if (wasmModule === undefined) {
+      return
+    }
+    
+    wasmModule.destroy()
+  }
+}
+
+export function wat2wasm(content: Buffer): Buffer {
+  let wasmModule
+  
+  try {
+    wasmModule = wabt.parseWat('temp.wat', content)
+    
+    const binaryResult = wasmModule.toBinary({ log: false, write_debug_names: true })
+    return Buffer.from(binaryResult.buffer.buffer)
+  } catch(err) {
+    window.showErrorMessage(err.message)
+  } finally {
+    if (wasmModule === undefined) {
+      return
+    }
+    
+    wasmModule.destroy()
+  }
 }
