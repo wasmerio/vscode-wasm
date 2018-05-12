@@ -1,6 +1,6 @@
 {
     "name": "vscode-wasm",
-    "displayName": "WebAssembly Toolkit for VSCode",
+    "displayName": "WebAssembly",
     "description": "WebAssembly Toolkit for VSCode",
     "version": "1.1.1",
     "publisher": "dtsvet",
@@ -18,39 +18,42 @@
         "url": "https://github.com/reklatsmasters/vscode-wasm.git"
     },
     "categories": [
-        "Languages",
+        "Programming Languages",
         "Other"
     ],
     "activationEvents": [
-        "*"
+        "onLanguage:wasm",
+        "onCommand:wasm.wasm2wat"
     ],
     "main": "./out/extension",
     "contributes": {
         "languages": [
             {
-                "id": "WebAssembly",
+                "id": "wasm",
                 "extensions": [
                     ".wasm"
                 ],
+                "aliases": [ "WebAssembly Binary", "WebAssembly" ],
                 "configuration": "./language-configuration.json"
             },
             {
-                "id": "WebAssembly Text",
+                "id": "wat",
                 "extensions": [
                     ".wat",
                     ".wast"
                 ],
+                "aliases": [ "WebAssembly Text" ],
                 "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "WebAssembly",
+                "language": "wasm",
                 "scopeName": "source.wasm",
                 "path": "./syntaxes/webassembly.tmLanguage.json"
             },
             {
-                "language": "WebAssembly Text",
+                "language": "wat",
                 "scopeName": "source.wasm",
                 "path": "./syntaxes/webassembly.tmLanguage.json"
             }
@@ -66,7 +69,7 @@
             "explorer/context": [
                 {
                     "command": "wasm.wasm2wat",
-                    "when": "resourceLangId == WebAssembly"
+                    "when": "resourceLangId == wasm"
                 }
             ]
         }

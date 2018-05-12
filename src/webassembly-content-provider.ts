@@ -5,8 +5,6 @@ import * as fs from 'fs'
 import { decode } from "@webassemblyjs/wasm-parser";
 import { print } from "@webassemblyjs/wast-printer"
 
-const scheme = 'WebAssembly'
-
 /**
  * This class helps to open WebAssembly binary files.
  */
@@ -27,7 +25,7 @@ export default class WebAssemblyContentProvider implements TextDocumentContentPr
  * @param uri - path to the file.
  */
 function getPhysicalPath(uri: Uri): string {
-  if (uri.scheme === scheme) {
+  if (uri.scheme === 'wasm-preview') {
       return uri.with({ scheme: 'file' }).fsPath
   }
 
@@ -35,7 +33,7 @@ function getPhysicalPath(uri: Uri): string {
 }
 
 function readFile(uri: Uri): Promise<Buffer | undefined> {
-  if (uri.scheme !== scheme) {
+  if (uri.scheme !== 'wasm-preview') {
     return
   }
 
