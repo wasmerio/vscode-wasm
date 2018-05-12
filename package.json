@@ -92,7 +92,7 @@
         "vscode": "^1.1.14"
     },
     "dependencies": {
-        "@webassemblyjs/wasm-parser": "^1.2.6",
-        "@webassemblyjs/wast-printer": "^1.2.6"
+        "@webassemblyjs/wasm-parser": "^1.4.2",
+        "@webassemblyjs/wast-printer": "^1.4.2"
     }
 }
