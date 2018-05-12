@@ -17,7 +17,7 @@ export function readFile(uri: Uri): Promise<Buffer> {
   const filepath = getPhysicalPath(uri);
   
   return new Promise((resolve, reject) => {
-    fs.readFile(filepath, (err: Error, data: Buffer) => {
+    fs.readFile(filepath, { encoding: null }, (err: Error, data: Buffer) => {
       if (err) {
         return reject(err)
       }

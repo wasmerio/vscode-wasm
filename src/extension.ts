@@ -51,7 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
         const from = uri.with({ scheme: 'file' })
         
         vscode.window.showSaveDialog(saveDialogOptions)
-            .then(maybeSaveWat(from), vscode.window.showErrorMessage)
+            .then(maybeSaveWasm(from), vscode.window.showErrorMessage)
     })
 
     if (vscode.window.activeTextEditor) {
