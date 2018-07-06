@@ -25,7 +25,8 @@
         "onLanguage:wasm",
         "onCommand:wasm.wasm2wat",
         "onCommand:wasm.save2wat",
-        "onCommand:wasm.save2wasm"
+        "onCommand:wasm.save2wasm",
+        "onDebug"
     ],
     "main": "./out/extension",
     "contributes": {

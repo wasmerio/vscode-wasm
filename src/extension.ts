@@ -57,8 +57,23 @@ export function activate(context: vscode.ExtensionContext) {
     if (vscode.window.activeTextEditor) {
         showDocument(vscode.window.activeTextEditor.document);
     }
+    
+    const startDebugEvent = vscode.debug.onDidStartDebugSession((session: vscode.DebugSession) => {
+        if (!session.type.startsWith('node')) {
+            return
+        }
 
-    context.subscriptions.push(registration, openEvent, previewCommand, save2watCommand, save2wasmCommand)
+        console.log('Hola! Debug Node.js session! type=%s, name=%s', session.type, session.name)
+    })
+
+    context.subscriptions.push(
+        registration, 
+        openEvent,
+        previewCommand,
+        save2watCommand,
+        save2wasmCommand,
+        startDebugEvent
+    )
 }
 
 export function deactivate() {
