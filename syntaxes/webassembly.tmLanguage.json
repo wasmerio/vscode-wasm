@@ -44,15 +44,11 @@
 			"patterns": [
 				{
 					"name": "storage.type.wasm",
-					"match": "\\b(func|type)\\b"
+					"match": "\\b(func|type|param|result)\\b"
 				},
 				{
 					"name": "variable.parameter.other.wasm",
 					"match": "(\\$){1}([\\w\\d]*)"
-				},
-				{
-					"name": "variable.parameter.wasm",
-					"match": "\\b(param)\\b"
 				}
 			]
 		},
@@ -60,7 +56,7 @@
 			"patterns": [
 				{
 					"name": "constant.numeric.wasm",
-					"match": "[\\d]"
+					"match": "-?(0x[0-9a-fA-F][0-9a-fA-F_]*|\\d[\\d_]*)"
 				}
 			]
 		},
@@ -91,7 +87,7 @@
 			"patterns": [
 				{
 					"name": "storage.type.wasm",
-					"match": "\\b(module|type|import|export|memory|table|start|result|elem|data)\\b"
+					"match": "\\b(module|import|export|memory|table|start|elem|data|local|global)\\b"
 				}
 			]
 		},
@@ -102,7 +98,7 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.wasm",
-					"match": "\\\\."
+					"match": "\\\\(n|t|\\\\|'|\"|[0-9a-fA-F]{2})"
 				}
 			]
 		},
@@ -153,8 +149,8 @@
 		"control": {
 			"patterns": [
 				{
-					"name": "keyword.control.less.wasm",
-					"match": "\\b(nop|block|loop|if|else|br|br_if|br_table|end|return|drop|select|unreachable|local)\\b"
+					"name": "keyword.control.wasm",
+					"match": "\\b(nop|block|loop|if|then|else|br|br_if|br_table|end|return|drop|select|unreachable)\\b"
 				}
 			]
 		},
