@@ -47,6 +47,10 @@
 					"match": "\\b(func|type|param|result)\\b"
 				},
 				{
+					"name": "storage.modifier.wasm",
+					"match": "\\b(mut)\\b"
+				},
+				{
 					"name": "variable.parameter.other.wasm",
 					"match": "(\\$){1}([\\w\\d]*)"
 				}
