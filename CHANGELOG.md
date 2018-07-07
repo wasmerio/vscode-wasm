@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "wasm" extension will be documented in this file.
 
+## unreleased
+- Improved syntax grammar ([@AlexanderOtavka](https://github.com/AlexanderOtavka))
+
 ## [1.2.0] - 2018-05-12
 - Ability to save .wasm files to .wat and .wat files to .wasm
 - Move to [wabt](https://www.npmjs.com/package/wabt) parser / printer again. [WebAssemblyjs](https://github.com/xtuc/webassemblyjs) seems unstable.
