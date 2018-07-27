@@ -3,6 +3,7 @@
 import * as vscode from 'vscode'
 
 import WebAssemblyContentProvider from './webassembly-content-provider'
+import WebAssemblyDebugContentProvider from './webassembly-debug-content-provider';
 import { Uri } from 'vscode'
 import { wasm2wat, wat2wasm, writeFile, readFile, SubscribeComplete } from './utils'
 import WebAssemblyFunctionQuickPickItem from './webassembly-quick-pick-item';
@@ -15,7 +16,10 @@ let activeDebugSession : WebAssemblyDebugSession | null = null
 
 export function activate(context: vscode.ExtensionContext) {
   const provider = new WebAssemblyContentProvider()
+  const debugProvider = new WebAssemblyDebugContentProvider()
+
   const registration = vscode.workspace.registerTextDocumentContentProvider('wasm-preview', provider)
+  const registerDebug = vscode.workspace.registerTextDocumentContentProvider('wasm-debug', debugProvider)
 
   const openEvent = vscode.workspace.onDidOpenTextDocument((document: vscode.TextDocument) => {
     showDocument(document);
@@ -67,7 +71,6 @@ export function activate(context: vscode.ExtensionContext) {
         return
       }
 
-      console.log('Selected file', file.label)
       return activeDebugSession.openFile(file.source)
     }
 
@@ -99,6 +102,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     registration,
+    registerDebug,
     openEvent,
     previewCommand,
     save2watCommand,

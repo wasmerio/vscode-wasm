@@ -1,7 +1,8 @@
 'use strict';
 
 import { DebugProtocol } from 'vscode-debugprotocol';
-import { debug, DebugSession, DebugSessionCustomEvent, Disposable } from 'vscode'
+import * as vscode from 'vscode'
+import { DebugSession, DebugSessionCustomEvent, Disposable, Uri } from 'vscode'
 import { EventEmitter } from 'events'
 import { SubscribeComplete } from './utils';
 
@@ -19,7 +20,7 @@ export default class WebAssemblyDebugSession extends EventEmitter {
     this._session = session;
     this._wasmSources = []
 
-    this._customEvent = debug.onDidReceiveDebugSessionCustomEvent((event: DebugSessionCustomEvent) => {
+    this._customEvent = vscode.debug.onDidReceiveDebugSessionCustomEvent((event: DebugSessionCustomEvent) => {
       if (event.session.id !== this._session.id) {
         return
       }
@@ -55,10 +56,13 @@ export default class WebAssemblyDebugSession extends EventEmitter {
     return Object.freeze(this._wasmSources);
   }
 
-  async openFile(source: DebugProtocol.Source) {
-    const response = await this._session.customRequest('source', { source });
+  async openFile(source: DebugProtocol.Source): Promise<vscode.TextEditor> {
+    const uri = Uri.parse(`wasm-debug:${source.path}.wat?session=${vscode.debug.activeDebugSession.id}`)
 
-    console.log('got response for `openFile`', response)
+    const document = await vscode.workspace.openTextDocument(uri);
+    const editor = await vscode.window.showTextDocument(document);
+
+    return editor
   }
 
   dispose() {
