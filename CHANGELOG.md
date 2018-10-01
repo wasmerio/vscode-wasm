@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "wasm" extension will be documented in this file.
 
-## unreleased
+## [1.2.1] - 2018-10-01
 - Improved syntax grammar ([@AlexanderOtavka](https://github.com/AlexanderOtavka))
 - Fixed a bug with incorrect name resolution. [#14](https://github.com/reklatsmasters/vscode-wasm/issues/14)
 
