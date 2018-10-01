@@ -3,6 +3,7 @@ All notable changes to the "wasm" extension will be documented in this file.
 
 ## unreleased
 - Improved syntax grammar ([@AlexanderOtavka](https://github.com/AlexanderOtavka))
+- Fixed a bug with incorrect name resolution. [#14](https://github.com/reklatsmasters/vscode-wasm/issues/14)
 
 ## [1.2.0] - 2018-05-12
 - Ability to save .wasm files to .wat and .wat files to .wasm
