@@ -1,6 +1,5 @@
-import { TextDocumentContentProvider, Uri, window } from 'vscode'
+import { Uri, window } from 'vscode'
 import * as fs from 'fs'
-import { EventEmitter } from 'events'
 import * as WabtModule from 'wabt'
 
 // @ts-ignore
@@ -91,49 +90,5 @@ export function wat2wasm(content: Buffer): Buffer {
     }
 
     wasmModule.destroy()
-  }
-}
-
-export class SubscribeComplete extends EventEmitter {
-  private _events: Array<any>;
-  private _handle : NodeJS.Timer;
-  private _time: number;
-  private _complete: boolean;
-
-  constructor(time: number) {
-    super();
-
-    this._events = [];
-    this._time = time;
-    this._complete = false;
-
-    this.resetTimer();
-  }
-
-  private resetTimer() {
-    if (this._handle !== undefined) {
-      clearTimeout(this._handle);
-    }
-
-    this._handle = setTimeout(() => {
-      this._complete = true;
-      this.emit('complete', this._events);
-    }, this._time);
-  }
-
-  process(event): boolean {
-    if (this._complete) {
-      return false
-    }
-
-    this._events.push(event);
-    this.resetTimer();
-
-    return true;
-  }
-
-  dispose() {
-    this._events.length = 0;
-    this._handle = undefined;
   }
 }

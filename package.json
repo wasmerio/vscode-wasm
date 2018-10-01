@@ -25,9 +25,7 @@
         "onLanguage:wasm",
         "onCommand:wasm.wasm2wat",
         "onCommand:wasm.save2wat",
-        "onCommand:wasm.save2wasm",
-        "onCommand:wasm.pickFunction",
-        "onDebug"
+        "onCommand:wasm.save2wasm"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -81,11 +79,6 @@
             {
                 "command": "wasm.save2wasm",
                 "title": "Save as WebAssembly binary file",
-                "category": "wasm"
-            },
-            {
-                "command": "wasm.pickFunction",
-                "title": "Select a WebAssembly function",
                 "category": "wasm"
             }
         ],
@@ -154,7 +147,6 @@
         "vscode": "^1.1.18"
     },
     "dependencies": {
-        "vscode-debugprotocol": "^1.29.0",
         "wabt": "^1.0.5"
     }
 }
