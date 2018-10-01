@@ -1,7 +1,10 @@
 import { TextDocumentContentProvider, Uri, window } from 'vscode'
 import * as fs from 'fs'
 import { EventEmitter } from 'events'
-import * as wabt from 'wabt'
+import * as WabtModule from 'wabt'
+
+// @ts-ignore
+const wabt = WabtModule();
 
 /**
  * @param uri - path to the file.
@@ -76,6 +79,7 @@ export function wat2wasm(content: Buffer): Buffer {
 
   try {
     wasmModule = wabt.parseWat('temp.wat', content)
+    wasmModule.resolveNames()
 
     const binaryResult = wasmModule.toBinary({ log: false, write_debug_names: true })
     return Buffer.from(binaryResult.buffer.buffer)

@@ -155,6 +155,6 @@
     },
     "dependencies": {
         "vscode-debugprotocol": "^1.29.0",
-        "wabt": "^1.0.0-nightly.20180421"
+        "wabt": "^1.0.5"
     }
 }
