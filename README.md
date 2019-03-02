@@ -12,7 +12,7 @@
 
 * Syntax highlight for WebAssembly textual representation.
 * Preview WebAssembly Binary files in 2 clicks.
-* Fast convertation between text and binary view.
+* Fast convertion between text and binary view.
 
 ![Syntax highlight](images/preview-1.png)
 
