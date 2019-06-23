@@ -7,6 +7,54 @@
         "body": "export ${1:\"name\"} (func ${2:$$name})",
         "prefix": "export"
     },
+    "memory.size": {
+        "body": "memory.size",
+        "prefix": "memory.size"
+    },
+    "memory.grow": {
+        "body": "memory.grow",
+        "prefix": "memory.grow"
+    },
+    "select": {
+        "body": "select",
+        "prefix": "select"
+    },
+    "drop": {
+        "body": "drop",
+        "prefix": "drop"
+    },
+    "return": {
+        "body": "return",
+        "prefix": "return"
+    },
+    "end": {
+        "body": "end",
+        "prefix": "end"
+    },
+    "unreachable": {
+        "body": "unreachable",
+        "prefix": "unreachable"
+    },
+    "nop": {
+        "body": "nop",
+        "prefix": "nop"
+    },
+    "block": {
+        "body": "block",
+        "prefix": "block"
+    },
+    "loop": {
+        "body": "loop",
+        "prefix": "loop"
+    },
+    "if": {
+        "body": "if",
+        "prefix": "if"
+    },
+    "else": {
+        "body": "else",
+        "prefix": "else"
+    },
     "call": {
         "body": "call ${1:x}",
         "prefix": "call"
