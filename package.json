@@ -144,9 +144,9 @@
         "@types/mocha": "^2.2.48",
         "@types/node": "^7.0.61",
         "typescript": "^2.9.2",
-        "vscode": "^1.1.18"
+        "vscode": "^1.1.36"
     },
     "dependencies": {
-        "wabt": "^1.0.5"
+        "wabt": "^1.0.11"
     }
 }
