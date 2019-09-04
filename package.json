@@ -65,6 +65,12 @@
                 "path": "./syntaxes/webassembly.tmLanguage.json"
             }
         ],
+        "snippets": [
+			{
+				"language": "wat",
+				"path": "./snippets/wat.snippets.json"
+			}
+		],
         "commands": [
             {
                 "command": "wasm.wasm2wat",
