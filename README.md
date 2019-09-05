@@ -1,12 +1,15 @@
 <p align='center'>
   <img src='https://raw.githubusercontent.com/reklatsmasters/vscode-wasm/master/images/vscode-wasm-logo.png' width='200' alt='logo' />
-  <p align='center'>WebAssembly Toolkit for VSCode</p>
+  <h2 align='center'>WebAssembly for VSCode</h2>
   <p align='center'>
     <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/version-short/dtsvet.vscode-wasm.svg?style=flat-square"></a>
   <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/installs/dtsvet.vscode-wasm.svg?style=flat-square"></a>
   <a title="GitHub license button" href="https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE"><img src="https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg?style=flat-square"></a>
   </p>
 </p>
+
+A Visual Studio Code extension with rich support for [WebAssembly](https://webassembly.org), including features such as **syntax highlighting**, **wasm binary view** and **conversion between wasm and wat** files.
+
 
 ## Features
 
