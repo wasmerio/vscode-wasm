@@ -1,10 +1,10 @@
 <p align='center'>
   <img src='https://raw.githubusercontent.com/reklatsmasters/vscode-wasm/master/images/vscode-wasm-logo.png' width='200' alt='logo' />
-  <p align='center'>WebAssembly Toolkit for VSCode.</p>
+  <p align='center'>WebAssembly Toolkit for VSCode</p>
   <p align='center'>
-    <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/version-short/dtsvet.vscode-wasm.svg"></a>
-  <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/installs/dtsvet.vscode-wasm.svg"></a>
-  <a title="GitHub license button" href="https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE"><img src="https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg"></a>
+    <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/version-short/dtsvet.vscode-wasm.svg?style=flat-square"></a>
+  <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/installs/dtsvet.vscode-wasm.svg?style=flat-square"></a>
+  <a title="GitHub license button" href="https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE"><img src="https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg?style=flat-square"></a>
   </p>
 </p>
 
@@ -20,4 +20,4 @@
 
 ## License
 
-MIT, 2017 (c) Dmitriy Tsvettsikh
+MIT, 2019 (c) WebAssembly Foundation
