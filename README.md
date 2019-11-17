@@ -23,4 +23,6 @@ A Visual Studio Code extension with rich support for [WebAssembly](https://webas
 
 ## License
 
-MIT, 2019 (c) WebAssembly Foundation
+MIT, 2017 - 2019 (c) [Dmitriy Tsvettsikh](https://github.com/reklatsmasters)
+
+MIT, 2019 - Present (c) WebAssembly Foundation
