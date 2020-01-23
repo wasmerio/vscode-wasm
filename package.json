@@ -1,158 +1,158 @@
 {
-    "name": "vscode-wasm",
-    "displayName": "WebAssembly",
-    "description": "WebAssembly Toolkit for VSCode",
-    "version": "1.2.1",
-    "publisher": "dtsvet",
-    "license": "MIT",
-    "icon": "images/vscode-wasm-logo.png",
-    "engines": {
-        "vscode": "^1.18.0"
-    },
-    "bugs": {
-        "url": "https://github.com/reklatsmasters/vscode-wasm/issues"
-    },
-    "homepage": "https://github.com/reklatsmasters/vscode-wasm",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/reklatsmasters/vscode-wasm.git"
-    },
-    "categories": [
-        "Programming Languages",
-        "Other"
+  "name": "vscode-wasm",
+  "displayName": "WebAssembly",
+  "description": "WebAssembly Toolkit for VSCode",
+  "version": "1.2.1",
+  "publisher": "dtsvet",
+  "license": "MIT",
+  "icon": "images/vscode-wasm-logo.png",
+  "engines": {
+    "vscode": "^1.18.0"
+  },
+  "bugs": {
+    "url": "https://github.com/reklatsmasters/vscode-wasm/issues"
+  },
+  "homepage": "https://github.com/reklatsmasters/vscode-wasm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reklatsmasters/vscode-wasm.git"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:wasm",
+    "onCommand:wasm.wasm2wat",
+    "onCommand:wasm.save2wat",
+    "onCommand:wasm.save2wasm"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "wasm",
+        "extensions": [
+          ".wasm"
+        ],
+        "aliases": [
+          "WebAssembly Binary",
+          "WebAssembly"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "wat",
+        "extensions": [
+          ".wat",
+          ".wast"
+        ],
+        "aliases": [
+          "WebAssembly Text"
+        ],
+        "configuration": "./language-configuration.json"
+      }
     ],
-    "activationEvents": [
-        "onLanguage:wasm",
-        "onCommand:wasm.wasm2wat",
-        "onCommand:wasm.save2wat",
-        "onCommand:wasm.save2wasm"
+    "grammars": [
+      {
+        "language": "wasm",
+        "scopeName": "source.wat",
+        "path": "./syntaxes/webassembly.tmLanguage.json"
+      },
+      {
+        "language": "wat",
+        "scopeName": "source.wat",
+        "path": "./syntaxes/webassembly.tmLanguage.json"
+      }
     ],
-    "main": "./out/extension",
-    "contributes": {
-        "languages": [
-            {
-                "id": "wasm",
-                "extensions": [
-                    ".wasm"
-                ],
-                "aliases": [
-                    "WebAssembly Binary",
-                    "WebAssembly"
-                ],
-                "configuration": "./language-configuration.json"
-            },
-            {
-                "id": "wat",
-                "extensions": [
-                    ".wat",
-                    ".wast"
-                ],
-                "aliases": [
-                    "WebAssembly Text"
-                ],
-                "configuration": "./language-configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "wasm",
-                "scopeName": "source.wasm",
-                "path": "./syntaxes/webassembly.tmLanguage.json"
-            },
-            {
-                "language": "wat",
-                "scopeName": "source.wasm",
-                "path": "./syntaxes/webassembly.tmLanguage.json"
-            }
-        ],
-        "snippets": [
-			{
-				"language": "wat",
-				"path": "./snippets/wat.snippets.json"
-			}
-		],
-        "commands": [
-            {
-                "command": "wasm.wasm2wat",
-                "title": "Show WebAssembly",
-                "category": "wasm"
-            },
-            {
-                "command": "wasm.save2wat",
-                "title": "Save as WebAssembly text file",
-                "category": "wasm"
-            },
-            {
-                "command": "wasm.save2wasm",
-                "title": "Save as WebAssembly binary file",
-                "category": "wasm"
-            }
-        ],
-        "menus": {
-            "explorer/context": [
-                {
-                    "command": "wasm.wasm2wat",
-                    "when": "resourceLangId == wasm",
-                    "group": "wasm"
-                },
-                {
-                    "command": "wasm.save2wat",
-                    "when": "resourceLangId == wasm",
-                    "group": "wasm"
-                },
-                {
-                    "command": "wasm.save2wasm",
-                    "when": "resourceLangId == wat",
-                    "group": "wasm"
-                }
-            ],
-            "editor/context": [
-                {
-                    "command": "wasm.save2wat",
-                    "when": "resourceLangId == wasm",
-                    "group": "wasm"
-                },
-                {
-                    "command": "wasm.save2wasm",
-                    "when": "resourceLangId == wat",
-                    "group": "wasm"
-                }
-            ],
-            "editor/title/context": [
-                {
-                    "command": "wasm.save2wat",
-                    "when": "resourceLangId == wasm",
-                    "group": "wasm"
-                },
-                {
-                    "command": "wasm.save2wasm",
-                    "when": "resourceLangId == wat",
-                    "group": "wasm"
-                }
-            ]
+    "snippets": [
+      {
+        "language": "wat",
+        "path": "./snippets/wat.snippets.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "wasm.wasm2wat",
+        "title": "Show WebAssembly",
+        "category": "wasm"
+      },
+      {
+        "command": "wasm.save2wat",
+        "title": "Save as WebAssembly text file",
+        "category": "wasm"
+      },
+      {
+        "command": "wasm.save2wasm",
+        "title": "Save as WebAssembly binary file",
+        "category": "wasm"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "wasm.wasm2wat",
+          "when": "resourceLangId == wasm",
+          "group": "wasm"
+        },
+        {
+          "command": "wasm.save2wat",
+          "when": "resourceLangId == wasm",
+          "group": "wasm"
+        },
+        {
+          "command": "wasm.save2wasm",
+          "when": "resourceLangId == wat",
+          "group": "wasm"
         }
-    },
-    "keywords": [
-        "wasm",
-        "wast",
-        "webassembly",
-        "asm",
-        "web assembly"
-    ],
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "@types/mocha": "^2.2.48",
-        "@types/node": "^7.0.61",
-        "typescript": "^2.9.2",
-        "vscode": "^1.1.36"
-    },
-    "dependencies": {
-        "wabt": "^1.0.11"
+      ],
+      "editor/context": [
+        {
+          "command": "wasm.save2wat",
+          "when": "resourceLangId == wasm",
+          "group": "wasm"
+        },
+        {
+          "command": "wasm.save2wasm",
+          "when": "resourceLangId == wat",
+          "group": "wasm"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "wasm.save2wat",
+          "when": "resourceLangId == wasm",
+          "group": "wasm"
+        },
+        {
+          "command": "wasm.save2wasm",
+          "when": "resourceLangId == wat",
+          "group": "wasm"
+        }
+      ]
     }
+  },
+  "keywords": [
+    "wasm",
+    "wast",
+    "webassembly",
+    "asm",
+    "web assembly"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.48",
+    "@types/node": "^7.0.61",
+    "typescript": "^2.9.2",
+    "vscode": "^1.1.36"
+  },
+  "dependencies": {
+    "wabt": "^1.0.11"
+  }
 }
