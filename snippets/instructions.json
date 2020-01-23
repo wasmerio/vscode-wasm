@@ -1,24 +1,4 @@
 {
-  "module": {
-    "body": "module\n\t${1:}\n",
-    "prefix": "module"
-  },
-  "export": {
-    "body": "export ${1:\"name\"} (func ${2:$$name})",
-    "prefix": "export"
-  },
-  "func-i32-0": {
-    "body": "func ${1:$$name} (result ${2:i32})\n\t${3:}\n",
-    "prefix": "func"
-  },
-  "func-i32-1": {
-    "body": "func ${1:$$name} (param ${2:$$lhs} ${3:i32}) (result ${4:i32})\n\t${5:}\n",
-    "prefix": "func"
-  },
-  "func-i32-2": {
-    "body": "func ${1:$$name} (param ${2:$$lhs} ${3:i32}) (param ${4:$$rhs} ${5:i32}) (result ${6:i32})\n\t${7:}\n",
-    "prefix": "func"
-  },
   "i32.trunc_sat_f32_s": {
     "body": "i32.trunc_sat_f32_s",
     "prefix": "i32.trunc_sat_f32_s"
@@ -86,10 +66,6 @@
   "memory.drop": {
     "body": "memory.drop",
     "prefix": "memory.drop"
-  },
-  "v128": {
-    "body": "v128",
-    "prefix": "v128"
   },
   "v128.const": {
     "body": "v128.const ",
@@ -1051,18 +1027,6 @@
     "body": "atomic.fence",
     "prefix": "atomic.fence"
   },
-  "anyref": {
-    "body": "anyref",
-    "prefix": "anyref"
-  },
-  "funcref": {
-    "body": "funcref",
-    "prefix": "funcref"
-  },
-  "nullref": {
-    "body": "nullref",
-    "prefix": "nullref"
-  },
   "ref.null": {
     "body": "ref.null",
     "prefix": "ref.null"
@@ -1106,10 +1070,6 @@
   "return_call_indirect": {
     "body": "return_call_indirect ",
     "prefix": "return_call_indirect"
-  },
-  "exnref": {
-    "body": "exnref",
-    "prefix": "exnref"
   },
   "try": {
     "body": "try",
@@ -1194,22 +1154,6 @@
   "exnref.pop": {
     "body": "exnref.pop",
     "prefix": "exnref.pop"
-  },
-  "i32": {
-    "body": "i32",
-    "prefix": "i32"
-  },
-  "i64": {
-    "body": "i64",
-    "prefix": "i64"
-  },
-  "f32": {
-    "body": "f32",
-    "prefix": "f32"
-  },
-  "f64": {
-    "body": "f64",
-    "prefix": "f64"
   },
   "i32.load": {
     "body": "i32.load",

@@ -57,18 +57,26 @@
       {
         "language": "wasm",
         "scopeName": "source.wat",
-        "path": "./syntaxes/webassembly.tmLanguage.json"
+        "path": "./syntaxes/wat.json"
       },
       {
         "language": "wat",
         "scopeName": "source.wat",
-        "path": "./syntaxes/webassembly.tmLanguage.json"
+        "path": "./syntaxes/wat.json"
       }
     ],
     "snippets": [
       {
         "language": "wat",
-        "path": "./snippets/wat.snippets.json"
+        "path": "./snippets/types.json"
+      },
+      {
+        "language": "wat",
+        "path": "./snippets/instructions.json"
+      },
+      {
+        "language": "wat",
+        "path": "./snippets/sections.json"
       }
     ],
     "commands": [

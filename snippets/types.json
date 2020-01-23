@@ -1,0 +1,38 @@
+{
+  "i32": {
+    "body": "i32",
+    "prefix": "i32"
+  },
+  "i64": {
+    "body": "i64",
+    "prefix": "i64"
+  },
+  "f32": {
+    "body": "f32",
+    "prefix": "f32"
+  },
+  "f64": {
+    "body": "f64",
+    "prefix": "f64"
+  },
+  "v128": {
+    "body": "v128",
+    "prefix": "v128"
+  },
+  "anyref": {
+    "body": "anyref",
+    "prefix": "anyref"
+  },
+  "funcref": {
+    "body": "funcref",
+    "prefix": "funcref"
+  },
+  "nullref": {
+    "body": "nullref",
+    "prefix": "nullref"
+  },
+  "exnref": {
+    "body": "exnref",
+    "prefix": "exnref"
+  }
+}
