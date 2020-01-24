@@ -2,6 +2,7 @@
 All notable changes to the "wasm" extension will be documented in this file.
 
 ## Unreleased
+- Updated grammar with the latest spec [#21](https://github.com/wasmerio/vscode-wasm/pull/21)
 - Improved README & logo
 - Updated dependencies
 - Added basic snipets for wat [#16](https://github.com/wasmerio/vscode-wasm/pull/16) 
