@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to the "wasm" extension will be documented in this file.
 
-## Unreleased
+## [1.3.1] - 2020-01-24
+- Updated Changelog date :)
+
+## [1.3.0] - 2018-01-24
 - Update `wabt` to support Wasm experimental features by default
 - Updated grammar with the latest spec [#21](https://github.com/wasmerio/vscode-wasm/pull/21)
 - Improved README & logo
