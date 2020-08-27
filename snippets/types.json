@@ -23,6 +23,10 @@
     "body": "anyref",
     "prefix": "anyref"
   },
+  "externref": {
+    "body": "externref",
+    "prefix": "externref"
+  },
   "funcref": {
     "body": "funcref",
     "prefix": "funcref"
