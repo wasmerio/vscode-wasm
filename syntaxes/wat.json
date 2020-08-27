@@ -702,7 +702,7 @@
             {
               "comment": "Floating point hexadecimal literal",
               "name": "constant.numeric.float.wat",
-              "match": "[-+]?\\b0[Xx]([0-9a-fA-F]*\\.[0-9a-fA-F]+|[0-9a-fA-F]+\\.?)[Pp][-+]?[0-9]+\\b"
+              "match": "[-+]?\\b0x([0-9a-fA-F]*\\.[0-9a-fA-F]+|[0-9a-fA-F]+\\.?)[Pp][-+]?[0-9]+\\b"
             },
             {
               "comment": "Floating point infinity",
@@ -712,12 +712,12 @@
             {
               "comment": "Floating point literal (NaN)",
               "name": "constant.numeric.float.wat",
-              "match": "[+-]?\\bnan:0[Xx][0-9a-fA-F][0-9a-fA-F]*\\b"
+              "match": "[+-]?\\bnan:0x[0-9a-fA-F][0-9a-fA-F]*\\b"
             },
             {
               "comment": "Integer literal",
               "name": "constant.numeric.integer.wat",
-              "match": "[+-]?\\b(?:0[Xx][0-9a-fA-F][0-9a-fA-F]*|\\d[\\d]*)\\b"
+              "match": "[+-]?\\b(?:0x[0-9a-fA-F][0-9a-fA-F]*|\\d[\\d]*)\\b"
             }
           ]
         }
