@@ -313,7 +313,7 @@
             {
               "comment": "Reference instruction [reference-types]",
               "name": "keyword.operator.word.wat",
-              "match": "\\b(ref)\\.(?:null|is_null|func)\\b",
+              "match": "\\b(ref)\\.(?:null|is_null|func|extern)\\b",
               "captures": {
                 "1": {
                   "name": "support.class.wat"
