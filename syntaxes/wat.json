@@ -702,7 +702,7 @@
             {
               "comment": "Floating point hexadecimal literal",
               "name": "constant.numeric.float.wat",
-              "match": "[-+]?\\b0x([0-9a-fA-F]*\\.[0-9a-fA-F]+|[0-9a-fA-F]+\\.?)[Pp][-+]?[0-9]+\\b"
+              "match": "[+-]?\\b0x([0-9a-fA-F]*\\.[0-9a-fA-F]+|[0-9a-fA-F]+\\.?)[Pp][+-]?[0-9]+\\b"
             },
             {
               "comment": "Floating point infinity",
