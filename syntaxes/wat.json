@@ -697,7 +697,7 @@
             {
               "comment": "Floating point literal",
               "name": "constant.numeric.float.wat",
-              "match": "[+-]?\\[0-9][0-9]*(?:\\.[0-9][0-9]*)?(?:[eE][+-]?[0-9]+)?\\b"
+              "match": "[+-]?\\b[0-9][0-9]*(?:\\.[0-9][0-9]*)?(?:[eE][+-]?[0-9]+)?\\b"
             },
             {
               "comment": "Floating point hexadecimal literal",
