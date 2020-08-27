@@ -333,7 +333,7 @@
             {
               "comment": "Type name [reference-types]",
               "name": "entity.name.type.wat",
-              "match": "\\b(?:anyref|externref|funcref|nullref)\\b"
+              "match": "\\b(?:externref|funcref|nullref)\\b"
             }
           ]
         },
@@ -368,7 +368,7 @@
             {
               "comment": "Pseudo stack instruction [binaryen]",
               "name": "keyword.operator.word.wat",
-              "match": "\\b(i32|i64|f32|f64|anyref|externref|funcref|nullref|exnref)\\.(?:push|pop)\\b",
+              "match": "\\b(i32|i64|f32|f64|externref|funcref|nullref|exnref)\\.(?:push|pop)\\b",
               "captures": {
                 "1": {
                   "name": "support.class.wat"
@@ -541,7 +541,7 @@
             {
               "comment": "Type name [reference-types]",
               "name": "entity.name.type.wat",
-              "match": "\\b(?:anyref|externref|funcref|nullref)\\b(?!\\.)"
+              "match": "\\b(?:externref|funcref|nullref)\\b(?!\\.)"
             }
           ]
         },
