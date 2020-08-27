@@ -1123,13 +1123,13 @@
     "body": "f64.pop",
     "prefix": "f64.pop"
   },
-  "anyref.push": {
-    "body": "anyref.push",
-    "prefix": "anyref.push"
+  "externref.push": {
+    "body": "externref.push",
+    "prefix": "externref.push"
   },
-  "anyref.pop": {
-    "body": "anyref.pop",
-    "prefix": "anyref.pop"
+  "externref.pop": {
+    "body": "externref.pop",
+    "prefix": "externref.pop"
   },
   "funcref.push": {
     "body": "funcref.push",
@@ -1842,5 +1842,5 @@
   "select": {
     "body": "select",
     "prefix": "select"
-  }    
+  }
 }
