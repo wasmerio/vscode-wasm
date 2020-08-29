@@ -512,7 +512,7 @@
             {
               "comment": "Control instruction [mvp]",
               "name": "keyword.control.wat",
-              "match": "\\b(?:unreachable|nop|block|loop|if|else|end|br|br_if|br_table|return|call|call_indirect)\\b"
+              "match": "\\b(?:unreachable|nop|block|loop|if|then|else|end|br|br_if|br_table|return|call|call_indirect)\\b"
             },
             {
               "comment": "Parametric instruction [mvp]",
