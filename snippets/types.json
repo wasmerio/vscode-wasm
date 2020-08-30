@@ -19,9 +19,9 @@
     "body": "v128",
     "prefix": "v128"
   },
-  "anyref": {
-    "body": "anyref",
-    "prefix": "anyref"
+  "externref": {
+    "body": "externref",
+    "prefix": "externref"
   },
   "funcref": {
     "body": "funcref",
