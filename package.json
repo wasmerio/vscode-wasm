@@ -10,12 +10,12 @@
     "vscode": "^1.18.0"
   },
   "bugs": {
-    "url": "https://github.com/reklatsmasters/vscode-wasm/issues"
+    "url": "https://github.com/wasmerio/vscode-wasm/issues"
   },
-  "homepage": "https://github.com/reklatsmasters/vscode-wasm",
+  "homepage": "https://github.com/wasmerio/vscode-wasm",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reklatsmasters/vscode-wasm.git"
+    "url": "https://github.com/wasmerio/vscode-wasm.git"
   },
   "categories": [
     "Programming Languages",
