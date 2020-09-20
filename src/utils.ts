@@ -1,9 +1,9 @@
 import { Uri, window } from "vscode";
 import * as fs from "fs";
-import * as WabtModule from "wabt";
+import WabtModule = require("wabt");
 
 // @ts-ignore
-const wabt = WabtModule();
+const wabt = await WabtModule();
 
 /**
  * @param uri - path to the file.
@@ -63,7 +63,8 @@ const WABT_FEATURES = {
   tail_call: true,
   bulk_memory: true,
   reference_types: true,
-  annotations: true
+  annotations: true,
+  gc: true,
 };
 
 export function wasm2wat(content: Buffer): string {
