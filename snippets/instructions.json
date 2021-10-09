@@ -1315,6 +1315,10 @@
     "body": "ref.func",
     "prefix": "ref.func"
   },
+  "ref.extern": {
+    "body": "ref.extern",
+    "prefix": "ref.extern"
+  },
   "table.get": {
     "body": "table.get",
     "prefix": "table.get"
@@ -2134,5 +2138,37 @@
   "select": {
     "body": "select",
     "prefix": "select"
+  },
+  "assert_return": {
+    "body": "assert_return",
+    "prefix": "assert_return"
+  },
+  "assert_return_nan": {
+    "body": "assert_return_nan",
+    "prefix": "assert_return_nan"
+  },
+  "assert_trap": {
+    "body": "assert_trap",
+    "prefix": "assert_trap"
+  },
+  "assert_malformed": {
+    "body": "assert_malformed",
+    "prefix": "assert_malformed"
+  },
+  "assert_invalid": {
+    "body": "assert_invalid",
+    "prefix": "assert_invalid"
+  },
+  "assert_exhaustion": {
+    "body": "assert_exhaustion",
+    "prefix": "assert_exhaustion"
+  },
+  "assert_unlinkable": {
+    "body": "assert_unlinkable",
+    "prefix": "assert_unlinkable"
+  },
+  "invoke": {
+    "body": "invoke ",
+    "prefix": "invoke"
   }
 }

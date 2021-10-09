@@ -712,6 +712,11 @@
             {
               "comment": "Floating point literal (NaN)",
               "name": "constant.numeric.float.wat",
+              "match": "nan\\b(:canonical|:arithmetic)?\\b"
+            },
+            {
+              "comment": "Floating point hexadecimal literal (NaN)",
+              "name": "constant.numeric.float.wat",
               "match": "[+-]?\\bnan:0x[0-9a-fA-F][0-9a-fA-F]*\\b"
             },
             {
