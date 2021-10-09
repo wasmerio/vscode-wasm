@@ -1347,6 +1347,10 @@
     "body": "table.copy",
     "prefix": "table.copy"
   },
+  "elem.drop": {
+    "body": "elem.drop",
+    "prefix": "elem.drop"
+  },
   "return_call": {
     "body": "return_call ",
     "prefix": "return_call"
