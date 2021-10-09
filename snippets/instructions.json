@@ -1311,6 +1311,10 @@
     "body": "ref.is_null",
     "prefix": "ref.is_null"
   },
+  "ref.as_non_null": {
+    "body": "ref.as_non_null",
+    "prefix": "ref.as_non_null"
+  },
   "ref.func": {
     "body": "ref.func",
     "prefix": "ref.func"
@@ -1318,6 +1322,10 @@
   "ref.extern": {
     "body": "ref.extern",
     "prefix": "ref.extern"
+  },
+  "func.bind": {
+    "body": "func.bind",
+    "prefix": "func.bind"
   },
   "table.get": {
     "body": "table.get",
@@ -1359,6 +1367,14 @@
     "body": "return_call_indirect ",
     "prefix": "return_call_indirect"
   },
+  "return_call_ref": {
+    "body": "return_call_ref ",
+    "prefix": "return_call_ref"
+  },
+  "let": {
+    "body": "let ",
+    "prefix": "let"
+  },
   "try": {
     "body": "try",
     "prefix": "try"
@@ -1386,6 +1402,14 @@
   "br_on_exn": {
     "body": "br_on_exn",
     "prefix": "br_on_exn"
+  },
+  "br_on_null": {
+    "body": "br_on_null",
+    "prefix": "br_on_null"
+  },
+  "br_on_non_null": {
+    "body": "br_on_non_null",
+    "prefix": "br_on_non_null"
   },
   "i32.push": {
     "body": "i32.push",
@@ -2142,6 +2166,10 @@
   "call_indirect": {
     "body": "call_indirect ",
     "prefix": "call_indirect"
+  },
+  "call_ref": {
+    "body": "call_ref ",
+    "prefix": "call_ref"
   },
   "drop": {
     "body": "drop",
