@@ -1367,6 +1367,10 @@
     "body": "catch",
     "prefix": "catch"
   },
+  "catch_all": {
+    "body": "catch_all",
+    "prefix": "catch_all"
+  },
   "throw": {
     "body": "throw",
     "prefix": "throw"
@@ -1374,6 +1378,10 @@
   "rethrow": {
     "body": "rethrow",
     "prefix": "rethrow"
+  },
+  "delegate": {
+    "body": "delegate",
+    "prefix": "delegate"
   },
   "br_on_exn": {
     "body": "br_on_exn",
