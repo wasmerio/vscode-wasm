@@ -19,6 +19,18 @@
     "body": "v128",
     "prefix": "v128"
   },
+  "extern": {
+    "body": "extern",
+    "prefix": "extern"
+  },
+  "func": {
+    "body": "func",
+    "prefix": "func"
+  },
+  "null": {
+    "body": "null",
+    "prefix": "null"
+  },
   "externref": {
     "body": "externref",
     "prefix": "externref"

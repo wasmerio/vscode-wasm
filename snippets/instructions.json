@@ -1375,6 +1375,10 @@
     "body": "let ",
     "prefix": "let"
   },
+  "ref": {
+    "body": "ref ",
+    "prefix": "ref"
+  },
   "try": {
     "body": "try",
     "prefix": "try"
