@@ -63,9 +63,9 @@
     "body": "memory.init",
     "prefix": "memory.init"
   },
-  "memory.drop": {
-    "body": "memory.drop",
-    "prefix": "memory.drop"
+  "data.drop": {
+    "body": "data.drop",
+    "prefix": "data.drop"
   },
   "v128.const": {
     "body": "v128.const ",
