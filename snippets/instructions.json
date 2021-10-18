@@ -167,6 +167,10 @@
     "body": "v128.store",
     "prefix": "v128.store"
   },
+  "v128.store8_lane": {
+    "body": "v128.store8_lane",
+    "prefix": "v128.store8_lane"
+  },
   "v128.store16_lane": {
     "body": "v128.store16_lane",
     "prefix": "v128.store16_lane"
