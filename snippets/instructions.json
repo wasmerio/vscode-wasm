@@ -2179,6 +2179,10 @@
     "body": "call_ref ",
     "prefix": "call_ref"
   },
+  "pop": {
+    "body": "pop",
+    "prefix": "pop"
+  },
   "drop": {
     "body": "drop",
     "prefix": "drop"
@@ -2186,6 +2190,14 @@
   "select": {
     "body": "select",
     "prefix": "select"
+  },
+  "tuple.make": {
+    "body": "tuple.make",
+    "prefix": "tuple.make"
+  },
+  "tuple.extract": {
+    "body": "tuple.extract",
+    "prefix": "tuple.extract"
   },
   "assert_return": {
     "body": "assert_return",
