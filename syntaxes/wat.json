@@ -343,7 +343,7 @@
             {
               "comment": "Control instruction [tail-call]",
               "name": "keyword.control.wat",
-              "match": "\\breturn_call(?:_indirect)?\\b"
+              "match": "\\breturn_call(?:_indirect|_ref)?\\b"
             }
           ]
         },
@@ -353,7 +353,7 @@
             {
               "comment": "Control instruction [exception-handling]",
               "name": "keyword.control.wat",
-              "match": "\\b(?:try|catch|throw|rethrow)\\b"
+              "match": "\\b(?:try|catch|catch_all|throw|rethrow|delegate)\\b"
             },
             {
               "comment": "Module element [exception-handling]",
