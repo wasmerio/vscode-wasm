@@ -63,9 +63,9 @@
     "body": "memory.init",
     "prefix": "memory.init"
   },
-  "memory.drop": {
-    "body": "memory.drop",
-    "prefix": "memory.drop"
+  "data.drop": {
+    "body": "data.drop",
+    "prefix": "data.drop"
   },
   "v128.const": {
     "body": "v128.const ",
@@ -166,6 +166,10 @@
   "v128.store": {
     "body": "v128.store",
     "prefix": "v128.store"
+  },
+  "v128.store8_lane": {
+    "body": "v128.store8_lane",
+    "prefix": "v128.store8_lane"
   },
   "v128.store16_lane": {
     "body": "v128.store16_lane",
@@ -1311,9 +1315,21 @@
     "body": "ref.is_null",
     "prefix": "ref.is_null"
   },
+  "ref.as_non_null": {
+    "body": "ref.as_non_null",
+    "prefix": "ref.as_non_null"
+  },
   "ref.func": {
     "body": "ref.func",
     "prefix": "ref.func"
+  },
+  "ref.extern": {
+    "body": "ref.extern",
+    "prefix": "ref.extern"
+  },
+  "func.bind": {
+    "body": "func.bind",
+    "prefix": "func.bind"
   },
   "table.get": {
     "body": "table.get",
@@ -1343,6 +1359,10 @@
     "body": "table.copy",
     "prefix": "table.copy"
   },
+  "elem.drop": {
+    "body": "elem.drop",
+    "prefix": "elem.drop"
+  },
   "return_call": {
     "body": "return_call ",
     "prefix": "return_call"
@@ -1350,6 +1370,18 @@
   "return_call_indirect": {
     "body": "return_call_indirect ",
     "prefix": "return_call_indirect"
+  },
+  "return_call_ref": {
+    "body": "return_call_ref ",
+    "prefix": "return_call_ref"
+  },
+  "let": {
+    "body": "let ",
+    "prefix": "let"
+  },
+  "ref": {
+    "body": "ref ",
+    "prefix": "ref"
   },
   "try": {
     "body": "try",
@@ -1359,6 +1391,10 @@
     "body": "catch",
     "prefix": "catch"
   },
+  "catch_all": {
+    "body": "catch_all",
+    "prefix": "catch_all"
+  },
   "throw": {
     "body": "throw",
     "prefix": "throw"
@@ -1367,9 +1403,17 @@
     "body": "rethrow",
     "prefix": "rethrow"
   },
-  "br_on_exn": {
-    "body": "br_on_exn",
-    "prefix": "br_on_exn"
+  "delegate": {
+    "body": "delegate",
+    "prefix": "delegate"
+  },
+  "br_on_null": {
+    "body": "br_on_null",
+    "prefix": "br_on_null"
+  },
+  "br_on_non_null": {
+    "body": "br_on_non_null",
+    "prefix": "br_on_non_null"
   },
   "i32.push": {
     "body": "i32.push",
@@ -1426,14 +1470,6 @@
   "nullref.pop": {
     "body": "nullref.pop",
     "prefix": "nullref.pop"
-  },
-  "exnref.push": {
-    "body": "exnref.push",
-    "prefix": "exnref.push"
-  },
-  "exnref.pop": {
-    "body": "exnref.pop",
-    "prefix": "exnref.pop"
   },
   "i32.load": {
     "body": "i32.load",
@@ -2127,6 +2163,14 @@
     "body": "call_indirect ",
     "prefix": "call_indirect"
   },
+  "call_ref": {
+    "body": "call_ref ",
+    "prefix": "call_ref"
+  },
+  "pop": {
+    "body": "pop",
+    "prefix": "pop"
+  },
   "drop": {
     "body": "drop",
     "prefix": "drop"
@@ -2134,5 +2178,45 @@
   "select": {
     "body": "select",
     "prefix": "select"
+  },
+  "tuple.make": {
+    "body": "tuple.make",
+    "prefix": "tuple.make"
+  },
+  "tuple.extract": {
+    "body": "tuple.extract",
+    "prefix": "tuple.extract"
+  },
+  "assert_return": {
+    "body": "assert_return",
+    "prefix": "assert_return"
+  },
+  "assert_return_nan": {
+    "body": "assert_return_nan",
+    "prefix": "assert_return_nan"
+  },
+  "assert_trap": {
+    "body": "assert_trap",
+    "prefix": "assert_trap"
+  },
+  "assert_malformed": {
+    "body": "assert_malformed",
+    "prefix": "assert_malformed"
+  },
+  "assert_invalid": {
+    "body": "assert_invalid",
+    "prefix": "assert_invalid"
+  },
+  "assert_exhaustion": {
+    "body": "assert_exhaustion",
+    "prefix": "assert_exhaustion"
+  },
+  "assert_unlinkable": {
+    "body": "assert_unlinkable",
+    "prefix": "assert_unlinkable"
+  },
+  "invoke": {
+    "body": "invoke ",
+    "prefix": "invoke"
   }
 }

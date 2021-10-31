@@ -161,6 +161,6 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "wabt": "^1.0.24"
+    "wabt": "^1.0.24-nightly.20211017"
   }
 }
