@@ -1407,10 +1407,6 @@
     "body": "delegate",
     "prefix": "delegate"
   },
-  "br_on_exn": {
-    "body": "br_on_exn",
-    "prefix": "br_on_exn"
-  },
   "br_on_null": {
     "body": "br_on_null",
     "prefix": "br_on_null"
@@ -1474,14 +1470,6 @@
   "nullref.pop": {
     "body": "nullref.pop",
     "prefix": "nullref.pop"
-  },
-  "exnref.push": {
-    "body": "exnref.push",
-    "prefix": "exnref.push"
-  },
-  "exnref.pop": {
-    "body": "exnref.pop",
-    "prefix": "exnref.pop"
   },
   "i32.load": {
     "body": "i32.load",

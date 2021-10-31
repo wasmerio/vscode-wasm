@@ -42,9 +42,5 @@
   "nullref": {
     "body": "nullref",
     "prefix": "nullref"
-  },
-  "exnref": {
-    "body": "exnref",
-    "prefix": "exnref"
   }
 }

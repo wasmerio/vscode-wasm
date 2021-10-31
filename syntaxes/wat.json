@@ -353,12 +353,12 @@
             {
               "comment": "Control instruction [exception-handling]",
               "name": "keyword.control.wat",
-              "match": "\\b(?:try|catch|throw|rethrow|br_on_exn)\\b"
+              "match": "\\b(?:try|catch|throw|rethrow)\\b"
             },
             {
               "comment": "Module element [exception-handling]",
               "name": "storage.type.wat",
-              "match": "(?<=\\()event\\b"
+              "match": "(?<=\\()tag\\b"
             }
           ]
         },
@@ -368,7 +368,7 @@
             {
               "comment": "Pseudo stack instruction [binaryen]",
               "name": "keyword.operator.word.wat",
-              "match": "\\b(i32|i64|f32|f64|externref|funcref|nullref|exnref)\\.(?:push|pop)\\b",
+              "match": "\\b(i32|i64|f32|f64|externref|funcref|nullref)\\.(?:push|pop)\\b",
               "captures": {
                 "1": {
                   "name": "support.class.wat"
@@ -512,7 +512,7 @@
             {
               "comment": "Control instruction [mvp]",
               "name": "keyword.control.wat",
-              "match": "\\b(?:unreachable|nop|block|loop|if|then|else|end|br|br_if|br_table|return|call|call_indirect)\\b"
+              "match": "\\b(?:unreachable|nop|block|loop|if|then|else|end|br|br_if|br_table|br_on_null|br_on_non_null|return|call|call_ref|call_indirect)\\b"
             },
             {
               "comment": "Parametric instruction [mvp]",
@@ -542,16 +542,6 @@
               "comment": "Type name [reference-types]",
               "name": "entity.name.type.wat",
               "match": "\\b(?:externref|funcref|nullref)\\b(?!\\.)"
-            }
-          ]
-        },
-        {
-          "comment": "Exception handling",
-          "patterns": [
-            {
-              "comment": "Type name [exception-handling]",
-              "name": "entity.name.type.wat",
-              "match": "\\bexnref\\b(?!\\.)"
             }
           ]
         },
@@ -603,7 +593,7 @@
             },
             {
               "comment": "Function name [mvp]",
-              "match": "(?<=\\(func|\\(start|call|return_call|ref\\.func)\\s+(\\$[0-9A-Za-z!#$%&'*+\\-./:<=>?@\\\\^_`|~]*)",
+              "match": "(?<=\\(func|\\(start|call|return_call|return_call_indirect|ref\\.func)\\s+(\\$[0-9A-Za-z!#$%&'*+\\-./:<=>?@\\\\^_`|~]*)",
               "captures": {
                 "1": {
                   "name": "entity.name.function.wat"
