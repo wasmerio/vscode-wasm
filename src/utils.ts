@@ -1,9 +1,16 @@
 import { Uri, window } from "vscode";
 import * as fs from "fs";
-import WabtModule = require("wabt");
+import { bindings } from "@wasmer/wabt";
+import {
+  WASM_FEATURE_ANNOTATIONS, WASM_FEATURE_BULK_MEMORY, WASM_FEATURE_EXCEPTIONS,
+  WASM_FEATURE_GC, WASM_FEATURE_MULTI_VALUE, WASM_FEATURE_MUTABLE_GLOBALS,
+  WASM_FEATURE_REFERENCE_TYPES, WASM_FEATURE_SAT_FLOAT_TO_INT,
+  WASM_FEATURE_SIGN_EXTENSION, WASM_FEATURE_SIMD, WASM_FEATURE_TAIL_CALL,
+  WASM_FEATURE_THREADS
+} from "@wasmer/wabt/src/bindings/bindings/bindings";
+import { TextDecoder, TextEncoder } from "util";
 
-// @ts-ignore
-const wabt = await WabtModule();
+const wabt = bindings.bindings();
 
 /**
  * @param uri - path to the file.
@@ -52,63 +59,41 @@ export function writeFile(uri: Uri, content: Buffer | string): Promise<void> {
   });
 }
 
-const WABT_FEATURES = {
-  exceptions: true,
-  mutable_globals: true,
-  sat_float_to_int: true,
-  sign_extension: true,
-  simd: true,
-  threads: true,
-  multi_value: true,
-  tail_call: true,
-  bulk_memory: true,
-  reference_types: true,
-  annotations: true,
-  gc: true,
-};
+const WABT_FEATURES = WASM_FEATURE_ANNOTATIONS |
+WASM_FEATURE_BULK_MEMORY |
+WASM_FEATURE_EXCEPTIONS |
+WASM_FEATURE_GC |
+WASM_FEATURE_MULTI_VALUE |
+WASM_FEATURE_MUTABLE_GLOBALS |
+WASM_FEATURE_REFERENCE_TYPES |
+WASM_FEATURE_SAT_FLOAT_TO_INT |
+WASM_FEATURE_SIGN_EXTENSION |
+WASM_FEATURE_SIMD |
+WASM_FEATURE_TAIL_CALL |
+WASM_FEATURE_THREADS ;
 
-export function wasm2wat(content: Buffer): string {
-  let wasmModule;
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 
-  try {
-    wasmModule = wabt.readWasm(content, {
-      ...WABT_FEATURES,
-      readDebugNames: true
-    });
-    wasmModule.generateNames();
-    wasmModule.resolveNames();
-    wasmModule.applyNames();
+export async function wasm2wat(content: Buffer): Promise<string> {
+  const result = (await wabt).wasm2wat(content, WABT_FEATURES);
 
-    return wasmModule.toText({ foldExprs: false, inlineExport: false });
-  } catch (err) {
-    window.showErrorMessage(`Error while reading the Wasm: ${err.message}`);
-  } finally {
-    if (wasmModule === undefined) {
-      return;
-    }
-
-    wasmModule.destroy();
+  switch (result.tag) {
+    case "ok":
+      return result.val;
+    case "err":
+      window.showErrorMessage(`Error while reading the Wasm: ${result.val}`);
   }
 }
 
-export function wat2wasm(content: Buffer): Buffer {
-  let wasmModule;
+export async function wat2wasm(content: Buffer): Promise<Buffer> {
+  const wat = decoder.decode(content);
+  const result = (await wabt).wat2wasm(wat, WABT_FEATURES);
 
-  try {
-    wasmModule = wabt.parseWat("temp.wat", content, WABT_FEATURES);
-    wasmModule.resolveNames();
-
-    const binaryResult = wasmModule.toBinary({
-      log: false,
-      write_debug_names: true
-    });
-    return Buffer.from(binaryResult.buffer.buffer);
-  } catch (err) {
-    window.showErrorMessage(err.message);
-  } finally {
-    if (wasmModule === undefined) {
-      return;
-    }
-    wasmModule.destroy();
+  switch (result.tag) {
+    case "ok":
+      return Buffer.from(result.val);
+    case "err":
+      window.showErrorMessage(result.val);
   }
 }

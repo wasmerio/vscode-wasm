@@ -119,7 +119,7 @@ function maybeSaveWat(from: vscode.Uri) {
 
 async function saveWat(from: vscode.Uri, to: vscode.Uri) {
   const wasmContent = await readFile(from);
-  const watContent = wasm2wat(wasmContent);
+  const watContent = await wasm2wat(wasmContent);
 
   await writeFile(to, watContent);
 }
@@ -136,7 +136,7 @@ function maybeSaveWasm(from: vscode.Uri) {
 
 async function saveWasm(from: vscode.Uri, to: vscode.Uri) {
   const watContent = await readFile(from);
-  const wasmContent = wat2wasm(watContent);
+  const wasmContent = await wat2wasm(watContent);
 
   await writeFile(to, wasmContent);
 }

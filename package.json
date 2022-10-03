@@ -161,6 +161,6 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "wabt": "^1.0.24"
+    "@wasmer/wabt": "file:../../../../../tmp/wabt"
   }
 }
