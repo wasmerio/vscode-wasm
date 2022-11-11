@@ -7,10 +7,10 @@ import {
   WASM_FEATURE_REFERENCE_TYPES, WASM_FEATURE_SAT_FLOAT_TO_INT,
   WASM_FEATURE_SIGN_EXTENSION, WASM_FEATURE_SIMD, WASM_FEATURE_TAIL_CALL,
   WASM_FEATURE_THREADS
-} from "@wasmer/wabt/src/bindings/bindings/bindings";
+} from "@wasmer/wabt/src/bindings/wabt/wabt";
 import { TextDecoder, TextEncoder } from "util";
 
-const wabt = bindings.bindings();
+const wabt = bindings.wabt();
 
 /**
  * @param uri - path to the file.

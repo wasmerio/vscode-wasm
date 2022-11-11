@@ -161,6 +161,6 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.5.0-rc.1/npm/wasmer/wabt/wabt-1.0.29.tar.gz"
+    "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.5.0/npm/wasmer/wabt/wabt-1.0.30.tar.gz"
   }
 }
