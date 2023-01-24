@@ -39,7 +39,7 @@
           "WebAssembly Binary",
           "WebAssembly"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./configurations/language-configuration-wat-wasm.json"
       },
       {
         "id": "wat",
@@ -50,7 +50,18 @@
         "aliases": [
           "WebAssembly Text"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./configurations/language-configuration-wat-wasm.json"
+      },
+      {
+        "id": "wai",
+        "extensions": [
+          ".wai",
+          ".wit"
+        ],
+        "aliases": [
+          "WebAssembly Interface"
+        ],
+        "configuration": "./configurations/language-configuration-wai.json"
       }
     ],
     "grammars": [
@@ -63,6 +74,11 @@
         "language": "wat",
         "scopeName": "source.wat",
         "path": "./syntaxes/wat.json"
+      },
+      {
+        "language": "wai",
+        "scopeName": "source.wai",
+        "path": "./syntaxes/wai.json"
       }
     ],
     "snippets": [
@@ -145,7 +161,9 @@
     "wast",
     "webassembly",
     "asm",
-    "web assembly"
+    "web assembly",
+    "wai",
+    "wit"
   ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -156,11 +174,11 @@
   },
   "devDependencies": {
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.10.3",
+    "@types/node": "^16.18.11",
     "typescript": "^4.4.3",
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.5.2/npm/wasmer/wabt/wabt-1.0.37.tar.gz"
+    "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.6.0/npm/wasmer/wabt/wabt-1.0.37.tar.gz"
   }
 }
