@@ -1,0 +1,74 @@
+{
+  "name": "WebAssembly Interfaces",
+  "scopeName": "source.wai",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "include": "#double-slash-comments"
+        },
+        {
+          "include": "#block-comments"
+        },
+        {
+          "include": "#triple-slash-doc-comments"
+        },
+        {
+          "include": "#block-doc-comments"
+        }
+      ]
+    },
+    "double-slash-comments": {
+      "name": "comment.line.double-slash.wai",
+      "comment": "This is a single line comment. Single line comment starts with // and ends with \\n",
+      "begin": "//",
+      "end": "$\\n?",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.wai"
+        }
+      }
+    },
+    "block-comments": {
+      "name": "comment.block.wai",
+      "comment": "This is a block comment. Block comment starts with /* and ends with */.",
+      "begin": "/\\*",
+      "end": "\\*/",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.wai"
+        }
+      }
+    },
+    "triple-slash-comments": {
+      "name": "comment.line.documentation.triple-slash.wai",
+      "comment": "This is a triple slash comment. Triple slash comment starts with /// and ends with \\n. This represents a documentation comment.",
+      "begin": "///",
+      "end": "$\\n?",
+      "captures": {
+        "0": {
+          "name": "punctuation.documentation.comment.wai"
+        }
+      }
+    },
+    "block-doc-comments": {
+      "name": "comment.block.documentation.wai",
+      "comment": "This is a block documentation comment. This starts with /** and ends with */. This represents a documentation comment.",
+      "begin": "/\\*\\*",
+      "end": "\\*/",
+      "captures": {
+        "0": {
+          "name": "punctuation.documentation.comment.wai"
+        }
+      }
+    }
+  }
+}
