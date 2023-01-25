@@ -1,0 +1,169 @@
+// sgp4.wai
+
+/*
+Wow this works
+*/
+
+/**
+ This works too @dynamite-bud
+*/
+
+/// underlying structs and variants for errors
+variant error-tle-what {
+    bad-checksum,
+    bad-length,
+    bad-first-character,
+    expected-float,
+    expected-float-with-assumed-decimal-point,
+    expected-integer,
+    expected-space,
+    expected-string,
+    float-with-assumed-decimal-point-too-long,
+    norad-id-mismatch,
+    unknown-classification,
+}
+variant error-tle-line {
+    line1,
+    line2,
+    both,
+}
+
+record out-of-range-epoch-eccentricity {
+    eccentricity: float64,
+}
+
+record out-of-range-eccentricity {
+    eccentricity: float64,
+    t: float64,
+}
+
+record out-of-range-perturbed-eccentricity {
+    eccentricity: float64,
+    t: float64,
+}
+
+record negative-semi-latus-rectum {
+    t: float64,
+}
+
+record tle {
+    what: error-tle-what,
+    line: error-tle-line,
+    start: u32,
+    end: u32,
+}
+
+
+/// main error variant
+variant error {
+    out-of-range-epoch-eccentricity(out-of-range-epoch-eccentricity),
+    out-of-range-eccentricity(out-of-range-eccentricity),
+    out-of-range-perturbed-eccentricity(out-of-range-perturbed-eccentricity),
+    negative-brouwer-mean-motion,
+    negative-kozai-mean-motion,
+    negative-semi-latus-rectum(negative-semi-latus-rectum),
+    tle(tle),
+}
+
+/// Classification variant
+variant classification {
+    unclassified,
+    classified,
+    secret
+}
+
+
+
+
+/// Elements Struct, ⚠️ we are keeping datetime as a string 
+
+record element-s {
+    object-name: option<string>,
+    international-designator: option<string>,
+    norad-id: u64,
+    classification: classification,
+    datetime: string,
+    mean-motion-dot: float64,
+    mean-motion-ddot: float64,
+    drag-term: float64,
+    element-set-number: u64,
+    inclination: float64,
+    right-ascension: float64,
+    eccentricity: float64,
+    argument-of-perigee: float64,
+    mean-anomaly: float64,
+    mean-motion: float64,
+    revolution-number: u64,
+    ephemeris-type: u8,
+    sample-b: bool
+}
+
+resource elements {
+    static from-tle: func(object-name: option<string>, line1: string, line2: string) -> expected<elements,error>
+    epoch: func() -> float64
+    epoch-afspc-compatibility-mode: func() -> float64
+}
+
+
+/// Geopotential Struct
+
+record geopotential {
+    ae: float64,
+    ke: float64,
+    j2: float64,
+    j3: float64,
+    j4: float64,
+}
+
+/// Orbit Struct
+record orbit {
+    inclination: float64,
+    right-ascension: float64,
+    eccentricity: float64,
+    argument-of-perigee: float64,
+    mean-anomaly: float64,
+    mean-motion: float64,
+}
+
+orbit-from-kozai-elements: func(geopotential: geopotential,inclination: float64, right-ascension: float64, eccentricity: float64, argument-of-perigee: float64, mean-anomaly: float64, kozai-mean-motion: float64) -> expected<orbit,error>
+
+/// Prediction Struct
+record prediction {
+    position: tuple<float64,float64,float64>,
+    velocity: tuple<float64,float64,float64>,
+}
+
+
+/// Constant WGS72
+wgs72: func() -> geopotential
+
+/// Constant WGS84
+wgs84: func() -> geopotential
+
+afspc-epoch-to-sidereal-time: func(epoch: float64) -> float64
+iau-epoch-to-sidereal-time: func(epoch: float64) -> float64
+parse2les: func(tles: string) -> expected<list<element-s>,error>
+parse3les: func(tles: string) -> expected<list<element-s>,error> 
+
+
+// get the t from resonanceState as all the fields are private and doeesn't allow automatic initialization
+resource resonance-state {
+    t: func()->float64
+}
+
+
+enum epoch-to-sidereal-time-algorithm {
+  afspc,
+  iau,
+}
+
+/// implmenetation for Constants
+resource constants {
+    static new: func(geopotential: geopotential, epoch-to-sidereal-time: epoch-to-sidereal-time-algorithm, epoch: float64, drag-item: float64, orbit0: orbit) -> expected<constants, error>
+    static from-elements: func(elements: element-s) -> expected<constants, error>
+    static from-elements-afspc-compatibility-mode: func(elements: element-s) -> expected<constants, error>
+    initial-state: func() -> option<resonance-state>
+    propagate-from-state: func(t: float64, state: option<resonance-state>, afspc-compatibility-mode: bool) -> expected<prediction, error>
+    propagate: func(t: float64) -> expected<prediction, error>
+    propagate-afspc-compatibility-mode: func(t: float64) -> expected<prediction, error>
+}

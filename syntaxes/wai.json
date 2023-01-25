@@ -6,67 +6,180 @@
       "include": "#comments"
     },
     {
-      "include": "#strings"
+      "include": "#block"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#functions"
     }
   ],
   "repository": {
-    "comments": {
+    "block": {
+      "name": "meta.block.wai",
+      "begin": "([\\w][\\-\\w]*)([\\s\\-\\w]*)(\\{)",
+      "end": "(\\})",
+      "comment": "This will match WAI Blocks like `(resource|variant|struct|enum|record|flags|union) \"name\" {`",
+      "beginCaptures": {
+        "1": {
+          "patterns": [
+            {
+              "name": "keyword.control.wai",
+              "match": "\\bresource|variant|struct|enum|record|flags|union\\b",
+              "comment": "Known Block Type"
+            }
+          ]
+        },
+        "2": {
+          "name": "variable.identifier.name.wai",
+          "comment": "Block Name",
+          "match": "[\\w\\-]+"
+        },
+        "3": {
+          "name": "punctuation.definition.block.begin.wai"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.wai"
+        }
+      },
       "patterns": [
         {
-          "include": "#double-slash-comments"
+          "include": "#functions"
         },
         {
-          "include": "#block-comments"
+          "include": "#comments"
         },
+        {
+          "include": "#types"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
         {
           "include": "#triple-slash-doc-comments"
         },
         {
           "include": "#block-doc-comments"
+        },
+        {
+          "include": "#double-slash-comments"
+        },
+        {
+          "include": "#block-comments"
         }
-      ]
+      ],
+      "repository": {
+        "double-slash-comments": {
+          "name": "comment.line.double-slash.wai",
+          "comment": "This is a single line comment. Single line comment starts with // and ends with \\n",
+          "begin": "//",
+          "end": "$\\n?",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.wai"
+            }
+          }
+        },
+        "block-comments": {
+          "name": "comment.block.wai",
+          "comment": "This is a block comment. Block comment starts with /* and ends with */.",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.wai"
+            }
+          }
+        },
+        "triple-slash-comments": {
+          "name": "comment.line.documentation.triple-slash.wai",
+          "comment": "This is a triple slash comment. Triple slash comment starts with /// and ends with \\n. This represents a documentation comment.",
+          "begin": "///",
+          "end": "$\\n?",
+          "captures": {
+            "0": {
+              "name": "punctuation.documentation.comment.wai"
+            }
+          }
+        },
+        "block-doc-comments": {
+          "name": "comment.block.documentation.wai",
+          "comment": "This is a block documentation comment. This starts with /** and ends with */. This represents a documentation comment.",
+          "begin": "/\\*\\*",
+          "end": "\\*/",
+          "captures": {
+            "0": {
+              "name": "punctuation.documentation.comment.wai"
+            }
+          }
+        }
+      }
     },
-    "double-slash-comments": {
-      "name": "comment.line.double-slash.wai",
-      "comment": "This is a single line comment. Single line comment starts with // and ends with \\n",
-      "begin": "//",
+    "functions": {
+      "name": "meta.function.definition.wai",
+      "comment": "This is a single line function definition. This starts with a variable name `[\\w]+`, succeded by a `func` keyword and ends with `new line`",
+      "begin": "([\\w][\\-\\w]+)\\:\\s+(func\\(.*\\))\\s+(\\-\\>)\\s+([\\w][\\-\\w]+)",
       "end": "$\\n?",
-      "captures": {
-        "0": {
-          "name": "punctuation.definition.comment.wai"
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.wai"
+        },
+        "2": {
+          "name": "keyword.other.wai",
+          "match": "(func)\\((.*)\\)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.func.wai"
+            },
+            "2": {
+              "name": "entity.name.type.wai",
+              "match": "([\\w][\\-\\w]+)\\s*([\\w][\\-\\w]+)",
+              "captures": {
+                "0": {
+                  "name": "comment.line.wai"
+                }
+              }
+            }
+          }
+        },
+        "3": {
+          "name": "keyword.operator.arrow.skinny.wai"
+        },
+        "4": {
+          "name": "entity.name.type.wai",
+          "patterns": [
+            {
+              "include": "#types"
+            }
+          ]
         }
       }
     },
-    "block-comments": {
-      "name": "comment.block.wai",
-      "comment": "This is a block comment. Block comment starts with /* and ends with */.",
-      "begin": "/\\*",
-      "end": "\\*/",
-      "captures": {
-        "0": {
-          "name": "punctuation.definition.comment.wai"
+    "types": {
+      "name": "entity.name.type.wai",
+      "comment": "This will match types like `'u8' | 'u16' | 'u32' | 'u64'| 's8' | 's16' | 's32' | 's64'| 'float32' | 'float64'| 'char'| 'bool'| 'string'| 'unit'| tuple| list| option| expected| future| stream| id`",
+      "patterns": [
+        {
+          "include": "#numeric-types"
+        },
+        {
+          "include": "#boolean-types"
         }
-      }
-    },
-    "triple-slash-comments": {
-      "name": "comment.line.documentation.triple-slash.wai",
-      "comment": "This is a triple slash comment. Triple slash comment starts with /// and ends with \\n. This represents a documentation comment.",
-      "begin": "///",
-      "end": "$\\n?",
-      "captures": {
-        "0": {
-          "name": "punctuation.documentation.comment.wai"
-        }
-      }
-    },
-    "block-doc-comments": {
-      "name": "comment.block.documentation.wai",
-      "comment": "This is a block documentation comment. This starts with /** and ends with */. This represents a documentation comment.",
-      "begin": "/\\*\\*",
-      "end": "\\*/",
-      "captures": {
-        "0": {
-          "name": "punctuation.documentation.comment.wai"
+      ],
+      "repository": {
+        "numeric-types": {
+          "name": "entity.name.type.numeric.wai",
+          "comment": "This will match numeric types identifiers such as signed and unsigned integers and floating point identifiers",
+          "match": "(u8|u16|u32|u64|s8|s16|s32|s64|float32|float64)"
+        },
+        "boolean-types": {
+          "name": "entity.name.type.boolean.wai",
+          "comment": "This will match boolean types such as bool",
+          "match": "(bool)"
         }
       }
     }
