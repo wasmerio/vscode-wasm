@@ -148,7 +148,7 @@ parse3les: func(tles: string) -> expected<list<element-s>,error>
 
 // get the t from resonanceState as all the fields are private and doeesn't allow automatic initialization
 resource resonance-state {
-    t: func()->float64
+    t: func() -> float64
 }
 
 

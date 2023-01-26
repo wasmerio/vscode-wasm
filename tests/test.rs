@@ -1,3 +1,4 @@
+use bitflags::bitflags;
 use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
@@ -8,6 +9,21 @@ use anyhow::Context;
 use wapm_targz_to_pirita::{generate_webc_file, TransformManifestFunctions};
 use wasmer_pack::{Command, Interface, Library, Metadata, Module, Package};
 use webc::{DirOrFile, Manifest, ParseOptions, WebC, WebCOwned};
+
+enum crayons {
+    red(f64),
+    blue(u32),
+    green(bool),
+}
+
+bitflags! {
+    struct Flags: char {
+        const A = 0b00000001;
+        const B = 0b00000010;
+        const C = 0b00000100;
+        const ABC = Self::A.bits | Self::B.bits | Self::C.bits;
+    }
+}
 
 pub(crate) fn load(path: &Path) -> Result<Package, Error> {
     let raw_webc: Vec<u8> = if path.is_dir() {

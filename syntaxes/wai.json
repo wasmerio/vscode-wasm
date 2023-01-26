@@ -6,7 +6,13 @@
       "include": "#comments"
     },
     {
-      "include": "#block"
+      "include": "#operators"
+    },
+    {
+      "include": "#variant"
+    },
+    {
+      "include": "#enum"
     },
     {
       "include": "#types"
@@ -16,25 +22,69 @@
     }
   ],
   "repository": {
-    "block": {
-      "name": "meta.block.wai",
-      "begin": "([\\w][\\-\\w]*)([\\s\\-\\w]*)(\\{)",
+    "operator": {
+      "patterns": [
+        {
+          "name": "keyword.operator.equal.wai",
+          "match": "\\="
+        },
+        {
+          "name": "keyword.operator.comma.wai",
+          "match": "\\,"
+        },
+        {
+          "name": "keyword.operator.colon.wai",
+          "match": "\\:"
+        },
+        {
+          "name": "keyword.operator.semicolon.wai",
+          "match": "\\;"
+        },
+        {
+          "name": "keyword.operator.brackets.round.begin.wai",
+          "match": "\\("
+        },
+        {
+          "name": "keyword.operator.brackets.round.end.wai",
+          "match": "\\)"
+        },
+        {
+          "name": "keyword.operator.brackets.curly.begin.wai",
+          "match": "\\{"
+        },
+        {
+          "name": "keyword.operator.brackets.curly.end.wai",
+          "match": "\\}"
+        },
+        {
+          "name": "keyword.operator.angle.begin.wai",
+          "match": "\\<"
+        },
+        {
+          "name": "keyword.operator.angle.end.wai",
+          "match": "\\>"
+        },
+        {
+          "name": "keyword.operator.star.wai",
+          "match": "\\*"
+        },
+        {
+          "name": "keyword.operator.arrow.skinny.wai",
+          "match": "\\->"
+        }
+      ]
+    },
+    "variant": {
+      "name": "meta.variant.wai",
+      "comment": "This will match WAI Variants like `variant \"name\" {`",
+      "begin": "(variant)\\s+([\\w][\\-\\w]+)\\s*(\\{)",
       "end": "(\\})",
-      "comment": "This will match WAI Blocks like `(resource|variant|struct|enum|record|flags|union) \"name\" {`",
       "beginCaptures": {
         "1": {
-          "patterns": [
-            {
-              "name": "keyword.control.wai",
-              "match": "\\bresource|variant|struct|enum|record|flags|union\\b",
-              "comment": "Known Block Type"
-            }
-          ]
+          "name": "keyword.other.variant.wai"
         },
         "2": {
-          "name": "variable.identifier.name.wai",
-          "comment": "Block Name",
-          "match": "[\\w\\-]+"
+          "name": "entity.name.type.variant.wai"
         },
         "3": {
           "name": "punctuation.definition.block.begin.wai"
@@ -47,15 +97,89 @@
       },
       "patterns": [
         {
-          "include": "#functions"
+          "include": "#enum-identifiers"
+        },
+        {
+          "include": "#types"
         },
         {
           "include": "#comments"
         },
         {
-          "include": "#types"
+          "include": "#operators"
+        }
+      ],
+      "repository": {
+        "variant-identifiers": {
+          "name": "variable.other.enummember.wai",
+          "match": "(\\b[\\w][\\-\\w]+)\\((.+)\\)"
+        }
+      }
+    },
+    "enum": {
+      "name": "meta.enum.wai",
+      "comment": "This will match WAI Variants like `enum \"name\" {`",
+      "begin": "(enum)\\s+([\\w][\\-\\w]+)\\s*(\\{)",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.enum.wai"
+        },
+        "2": {
+          "name": "entity.name.type.enum.wai"
+        },
+        "3": {
+          "name": "punctuation.definition.block.begin.wai"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.wai"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#enum-identifiers"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#operators"
         }
       ]
+    },
+
+    "enum-identifiers": {
+      "begin": "\\b[\\w][\\-\\w]+",
+      "end": "(\\,?)$\\n",
+      "beginCaptures": {
+        "0": {
+          "name": "variable.other.enummember.wai"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.comma.wai"
+        }
+      }
+    },
+    "block": {
+      "name": "meta.block.wai",
+      "begin": "([\\w][\\-\\w]+[\\s\\-\\w]+)(\\{)",
+      "end": "(\\})",
+      "comment": "This will match WAI Blocks like `(resource|variant|struct|enum|record|flags|union) \"name\" {`",
+      "beginCaptures": {
+        "1": {},
+        "2": {
+          "name": "punctuation.definition.block.begin.wai"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.wai"
+        }
+      }
     },
     "comments": {
       "patterns": [
@@ -122,7 +246,7 @@
     "functions": {
       "name": "meta.function.definition.wai",
       "comment": "This is a single line function definition. This starts with a variable name `[\\w]+`, succeded by a `func` keyword and ends with `new line`",
-      "begin": "([\\w][\\-\\w]+)\\:\\s+(func\\(.*\\))\\s+(\\-\\>)\\s+([\\w][\\-\\w]+)",
+      "begin": "([\\w][\\-\\w]*)\\:\\s+(func\\(.*\\))\\s+(\\-\\>)\\s+([\\w][\\-\\w]+)",
       "end": "$\\n?",
       "beginCaptures": {
         "1": {
@@ -168,8 +292,24 @@
         },
         {
           "include": "#boolean-types"
+        },
+        {
+          "include": "#primitive-types"
+        },
+        {
+          "include": "#expected-types"
+        },
+        {
+          "include": "#option-types"
+        },
+        {
+          "include": "#list-types"
+        },
+        {
+          "include": "#tuple-types"
         }
       ],
+
       "repository": {
         "numeric-types": {
           "name": "entity.name.type.numeric.wai",
@@ -180,6 +320,31 @@
           "name": "entity.name.type.boolean.wai",
           "comment": "This will match boolean types such as bool",
           "match": "(bool)"
+        },
+        "primitive-types": {
+          "name": "entity.name.type.primitive.wai",
+          "comment": "This will match primitive types such as string and char",
+          "match": "(string|char)"
+        },
+        "expected-types": {
+          "name": "entity.name.type.expected.wai",
+          "comment": "This will match expected types such as expected",
+          "match": "(expected)"
+        },
+        "option-types": {
+          "name": "entity.name.type.option.wai",
+          "comment": "This will match option types such as option",
+          "match": "(option)"
+        },
+        "list-types": {
+          "name": "entity.name.type.list.wai",
+          "comment": "This will match list types such as list",
+          "match": "(list)"
+        },
+        "tuple-types": {
+          "name": "entity.name.type.tuple.wai",
+          "comment": "This will match tuple types such as tuple",
+          "match": "(tuple)"
         }
       }
     }
