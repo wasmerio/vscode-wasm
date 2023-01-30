@@ -9,6 +9,12 @@
       "include": "#operators"
     },
     {
+      "include": "#record"
+    },
+    {
+      "include": "#union"
+    },
+    {
       "include": "#variant"
     },
     {
@@ -18,7 +24,10 @@
       "include": "#types"
     },
     {
-      "include": "#functions"
+      "include": "#resource"
+    },
+    {
+      "include": "#function-identifiers"
     }
   ],
   "repository": {
@@ -33,7 +42,7 @@
           "match": "\\,"
         },
         {
-          "name": "keyword.operator.colon.wai",
+          "name": "keyword.operator.key-value.wai",
           "match": "\\:"
         },
         {
@@ -74,10 +83,182 @@
         }
       ]
     },
+    "union": {
+      "name": "meta.union.wai",
+      "comment": "This will match WAI unions like `union \"name\" {`",
+      "begin": "(union)\\s+([\\w][\\-\\w]+|[\\w])\\s*(\\{)",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.union.wai"
+        },
+        "2": {
+          "name": "entity.name.type.declaration.union.wai"
+        },
+        "3": {
+          "name": "punctuation.definition.block.begin.wai"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.wai"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#operators"
+        }
+      ]
+    },
+    "resource": {
+      "name": "meta.resource.wai",
+      "comment": "This will match WAI Resources like `resource \"name\" {`",
+      "begin": "(resource)\\s+([\\w][\\-\\w]+|[\\w])\\s*(\\{)",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.resource.wai"
+        },
+        "2": {
+          "name": "entity.name.type.resource.wai"
+        },
+        "3": {
+          "name": "punctuation.definition.block.begin.wai"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.wai"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#function-identifiers"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#operators"
+        }
+      ]
+    },
+    "function-identifiers": {
+      "name": "meta.function.definition.wai",
+      "comment": "This is a single line function definition. This starts with a variable name `[\\w]+`, succeded by a `func` keyword and ends with `new line`",
+      "begin": "\\b(static)?\\s*([\\w][\\-\\w]+|[\\w])(\\:)\\s+(func)\\((.*)\\)\\s+(\\-\\>)\\s+(.+)$",
+      "end": "$\\n",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.modifier.static.wai"
+        },
+        "2": {
+          "name": "entity.name.function.wai"
+        },
+        "3": {
+          "name": "keyword.operator.key-value.wai"
+        },
+        "4": {
+          "name": "keyword.other.func.wai"
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#operators"
+            }
+          ],
+          "name": "variable.function.parameters.wai"
+        },
+        "6": {
+          "name": "keyword.operator.arrow.skinny.wai"
+        },
+        "7": {
+          "patterns": [
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "name": "entity.name.return-type.wai",
+              "begin": "[\\w][\\-\\w]+|[\\w]",
+              "comment": "This will match return types like `String`"
+            }
+          ]
+        }
+      }
+    },
+    "record": {
+      "name": "meta.record.wai",
+      "comment": "This will match WAI records like `record \"name\" {`",
+      "begin": "(record)\\s+([\\w][\\-\\w]+|[\\w])\\s*(\\{)",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.struct.wai"
+        },
+        "2": {
+          "name": "entity.name.type.struct.wai"
+        },
+        "3": {
+          "name": "punctuation.definition.block.begin.wai"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.end.wai"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#record-identifiers"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#operators"
+        }
+      ]
+    },
+    "record-identifiers": {
+      "begin": "\\b([\\w][\\-\\w]+|[\\w])\\:(.+)",
+      "end": "(\\,?)$\\n",
+      "beginCaptures": {
+        "1": {
+          "name": "variable.declaration.struct.wai"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#operators"
+            }
+          ]
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.comma.wai"
+        }
+      }
+    },
     "variant": {
       "name": "meta.variant.wai",
       "comment": "This will match WAI Variants like `variant \"name\" {`",
-      "begin": "(variant)\\s+([\\w][\\-\\w]+)\\s*(\\{)",
+      "begin": "(variant)\\s+([\\w][\\-\\w]+|[\\w])\\s*(\\{)",
       "end": "(\\})",
       "beginCaptures": {
         "1": {
@@ -97,10 +278,10 @@
       },
       "patterns": [
         {
-          "include": "#enum-identifiers"
+          "include": "#variant-identifiers"
         },
         {
-          "include": "#types"
+          "include": "#enum-identifiers"
         },
         {
           "include": "#comments"
@@ -108,18 +289,36 @@
         {
           "include": "#operators"
         }
-      ],
-      "repository": {
-        "variant-identifiers": {
-          "name": "variable.other.enummember.wai",
-          "match": "(\\b[\\w][\\-\\w]+)\\((.+)\\)"
+      ]
+    },
+    "variant-identifiers": {
+      "begin": "\\b([\\w][\\-\\w]+|[\\w])\\((.+?)\\)",
+      "end": "(\\,?)$\\n",
+      "beginCaptures": {
+        "1": {
+          "name": "variable.other.enummember.wai"
+        },
+        "2": {
+          "patterns": [
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#operators"
+            }
+          ]
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.comma.wai"
         }
       }
     },
     "enum": {
       "name": "meta.enum.wai",
       "comment": "This will match WAI Variants like `enum \"name\" {`",
-      "begin": "(enum)\\s+([\\w][\\-\\w]+)\\s*(\\{)",
+      "begin": "(enum)\\s+([\\w][\\-\\w]+|[\\w])\\s*(\\{)",
       "end": "(\\})",
       "beginCaptures": {
         "1": {
@@ -149,9 +348,8 @@
         }
       ]
     },
-
     "enum-identifiers": {
-      "begin": "\\b[\\w][\\-\\w]+",
+      "begin": "\\b([\\w][\\-\\w]+|[\\w])",
       "end": "(\\,?)$\\n",
       "beginCaptures": {
         "0": {
@@ -243,46 +441,7 @@
         }
       }
     },
-    "functions": {
-      "name": "meta.function.definition.wai",
-      "comment": "This is a single line function definition. This starts with a variable name `[\\w]+`, succeded by a `func` keyword and ends with `new line`",
-      "begin": "([\\w][\\-\\w]*)\\:\\s+(func\\(.*\\))\\s+(\\-\\>)\\s+([\\w][\\-\\w]+)",
-      "end": "$\\n?",
-      "beginCaptures": {
-        "1": {
-          "name": "entity.name.function.wai"
-        },
-        "2": {
-          "name": "keyword.other.wai",
-          "match": "(func)\\((.*)\\)",
-          "captures": {
-            "1": {
-              "name": "keyword.other.func.wai"
-            },
-            "2": {
-              "name": "entity.name.type.wai",
-              "match": "([\\w][\\-\\w]+)\\s*([\\w][\\-\\w]+)",
-              "captures": {
-                "0": {
-                  "name": "comment.line.wai"
-                }
-              }
-            }
-          }
-        },
-        "3": {
-          "name": "keyword.operator.arrow.skinny.wai"
-        },
-        "4": {
-          "name": "entity.name.type.wai",
-          "patterns": [
-            {
-              "include": "#types"
-            }
-          ]
-        }
-      }
-    },
+
     "types": {
       "name": "entity.name.type.wai",
       "comment": "This will match types like `'u8' | 'u16' | 'u32' | 'u64'| 's8' | 's16' | 's32' | 's64'| 'float32' | 'float64'| 'char'| 'bool'| 'string'| 'unit'| tuple| list| option| expected| future| stream| id`",

@@ -8,13 +8,14 @@ Wow this works
  This works too @dynamite-bud
 */
 
+
 /// underlying structs and variants for errors
 variant error-tle-what {
-    bad-checksum,
-    bad-length,
-    bad-first-character,
-    expected-float,
-    expected-float-with-assumed-decimal-point,
+    bad-checksum(u8),
+    bad-length(u32),
+    bad-first-character(string),
+    expected-float(float64),
+    expected-float-with-assumed-decimal-point(expected<list<float64,u8>>),
     expected-integer,
     expected-space,
     expected-string,
@@ -26,6 +27,14 @@ variant error-tle-line {
     line1,
     line2,
     both,
+    a,
+    b
+}
+
+enum colors {
+    red,
+    green,
+    blue,
 }
 
 record out-of-range-epoch-eccentricity {
@@ -72,7 +81,10 @@ variant classification {
     secret
 }
 
-
+union configuration {
+    string,
+    list<string>,
+}
 
 
 /// Elements Struct, ⚠️ we are keeping datetime as a string 
