@@ -2,3 +2,6 @@ out
 node_modules
 .vscode-test/
 *.vsix
+
+example-syntaxes/
+.DS_Store
