@@ -7,7 +7,7 @@
   "license": "MIT",
   "icon": "images/vscode-wasm-logo.png",
   "engines": {
-    "vscode": "^1.18.0"
+    "vscode": "^1.65.0"
   },
   "bugs": {
     "url": "https://github.com/wasmerio/vscode-wasm/issues"
@@ -179,6 +179,7 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
+    "vscode-languageclient": "^8.0.2",
     "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.6.0/npm/wasmer/wabt/wabt-1.0.37.tar.gz"
   }
 }
