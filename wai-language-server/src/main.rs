@@ -1,6 +1,10 @@
+use tower_lsp::jsonrpc::Error;
 use tower_lsp::jsonrpc::Result;
+use tower_lsp::lsp_types::MessageType;
 use tower_lsp::lsp_types::*;
 use tower_lsp::{Client, LanguageServer, LspService, Server};
+
+use serde_json::Value;
 
 #[derive(Debug)]
 struct Backend {
@@ -14,6 +18,10 @@ impl LanguageServer for Backend {
             capabilities: ServerCapabilities {
                 hover_provider: Some(HoverProviderCapability::Simple(true)),
                 completion_provider: Some(CompletionOptions::default()),
+                execute_command_provider: Some(ExecuteCommandOptions {
+                    commands: vec!["wai-language-server.printVersion".to_string()],
+                    work_done_progress_options: Default::default(),
+                }),
                 ..Default::default()
             },
             ..Default::default()
@@ -42,6 +50,21 @@ impl LanguageServer for Backend {
             contents: HoverContents::Scalar(MarkedString::String("You're hovering!".to_string())),
             range: None,
         }))
+    }
+
+    async fn execute_command(&self, params: ExecuteCommandParams) -> Result<Option<Value>> {
+        match params.command.as_str() {
+            "wai-language-server.printVersion" => {
+                let crate_name = env!("CARGO_PKG_NAME");
+                let version = env!("CARGO_PKG_VERSION");
+
+                self.client
+                    .show_message(MessageType::INFO, format!("{crate_name} {version}"))
+                    .await;
+                Ok(None)
+            }
+            _ => Err(Error::invalid_request()),
+        }
     }
 }
 

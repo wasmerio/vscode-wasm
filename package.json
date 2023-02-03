@@ -137,6 +137,11 @@
         "command": "wasm.save2wasm",
         "title": "Save as WebAssembly binary file",
         "category": "wasm"
+      },
+      {
+        "command": "wai-language-server.printVersion",
+        "title": "Show WAI Version",
+        "category": "wai"
       }
     ],
     "menus": {
