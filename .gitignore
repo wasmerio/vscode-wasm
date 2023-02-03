@@ -5,3 +5,5 @@ node_modules
 
 example-syntaxes/
 .DS_Store
+
+target/

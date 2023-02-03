@@ -29,7 +29,10 @@ async function activateWAILsp(context: ExtensionContext) {
   const traceOutputChannel = window.createOutputChannel(
     "WAI Language Server trace"
   );
-  const command = process.env.SERVER_PATH || "wai-language-server";
+  const command =
+    process.env.SERVER_PATH ||
+    workspace.getConfiguration("wai-language-server").get("serverPath");
+
   const run: Executable = {
     command,
     options: {

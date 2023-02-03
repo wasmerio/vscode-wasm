@@ -60,10 +60,37 @@
         ],
         "aliases": [
           "WebAssembly Interface"
-        ],
-        "configuration": "./configurations/language-configuration-wai.json"
+        ]
       }
     ],
+    "configuration": {
+      "type": "object",
+      "title": "wai-language-server",
+      "properties": {
+        "wai-language-server.serverPath": {
+          "type": "string",
+          "scope": "window",
+          "default": "wai-language-server",
+          "description": "The path to the WAI language server executable."
+        },
+        "wai-language-server.trace.server": {
+          "type": "string",
+          "scope": "window",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "enumDescriptions": [
+            "No traces",
+            "Error only",
+            "Full log"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the WAI language server."
+        }
+      }
+    },
     "grammars": [
       {
         "language": "wasm",

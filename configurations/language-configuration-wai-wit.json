@@ -2,7 +2,7 @@
   "type": "object",
   "title": "wai-language-server",
   "properties": {
-    "wai-language-server.path": {
+    "wai-language-server.serverPath": {
       "type": "string",
       "scope": "window",
       "default": "wai-language-server",
