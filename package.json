@@ -21,12 +21,6 @@
     "Programming Languages",
     "Other"
   ],
-  "activationEvents": [
-    "onLanguage:wasm",
-    "onCommand:wasm.wasm2wat",
-    "onCommand:wasm.save2wat",
-    "onCommand:wasm.save2wasm"
-  ],
   "main": "./out/extension",
   "contributes": {
     "languages": [
