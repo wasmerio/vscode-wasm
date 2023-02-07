@@ -1,33 +1,92 @@
 "use strict";
 
-import * as vscode from "vscode";
+import {
+  ExtensionContext,
+  TextDocument,
+  commands,
+  Uri,
+  window,
+  workspace,
+} from "vscode";
+
+import {
+  Disposable,
+  Executable,
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+} from "vscode-languageclient/node";
 
 import WebAssemblyContentProvider from "./webassembly-content-provider";
-import { Uri } from "vscode";
 import { wasm2wat, wat2wasm, writeFile, readFile } from "./utils";
 
-export function activate(context: vscode.ExtensionContext) {
+let client: LanguageClient;
+// type a = Parameters<>;
+
+async function activateWAILsp(context: ExtensionContext) {
+  context.globalState.update("inWaiFile", true);
+
+  const traceOutputChannel = window.createOutputChannel(
+    "WAI Language Server trace"
+  );
+  const command =
+    process.env.SERVER_PATH ||
+    workspace.getConfiguration("wai-language-server").get("serverPath");
+
+  const run: Executable = {
+    command,
+    options: {
+      env: {
+        ...process.env,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        RUST_LOG: "debug",
+      },
+    },
+  };
+  const serverOptions: ServerOptions = {
+    run,
+    debug: run,
+  };
+
+  let clientOptions: LanguageClientOptions = {
+    documentSelector: [{ scheme: "file", language: "wai" }],
+    traceOutputChannel,
+  };
+
+  client = new LanguageClient(
+    "wai-language-server",
+    "WAI Language Server",
+    serverOptions,
+    clientOptions
+  );
+  client.start();
+}
+
+export function activate(context: ExtensionContext) {
+  // starting the language server for WAI
+  activateWAILsp(context);
+
   const provider = new WebAssemblyContentProvider();
 
-  const registration = vscode.workspace.registerTextDocumentContentProvider(
+  const registration = workspace.registerTextDocumentContentProvider(
     "wasm-preview",
     provider
   );
 
-  const openEvent = vscode.workspace.onDidOpenTextDocument(
-    (document: vscode.TextDocument) => {
+  const openEvent = workspace.onDidOpenTextDocument(
+    (document: TextDocument) => {
       showDocument(document);
     }
   );
 
-  const previewCommand = vscode.commands.registerCommand(
+  const previewCommand = commands.registerCommand(
     "wasm.wasm2wat",
     (uri: Uri) => {
       showPreview(uri);
     }
   );
 
-  const save2watCommand = vscode.commands.registerCommand(
+  const save2watCommand = commands.registerCommand(
     "wasm.save2wat",
     (uri: Uri) => {
       const watPath = uri.path.replace(/\.wasm$/, ".wat");
@@ -35,20 +94,20 @@ export function activate(context: vscode.ExtensionContext) {
       const saveDialogOptions = {
         filters: {
           "WebAssembly Text": ["wat", "wast"],
-          "WebAssembly Binary": ["wasm"]
+          "WebAssembly Binary": ["wasm"],
         },
-        defaultUri: uri.with({ scheme: "file", path: watPath })
+        defaultUri: uri.with({ scheme: "file", path: watPath }),
       };
 
       const from = uri.with({ scheme: "file" });
 
-      vscode.window
+      window
         .showSaveDialog(saveDialogOptions)
-        .then(maybeSaveWat(from), vscode.window.showErrorMessage);
+        .then(maybeSaveWat(from), window.showErrorMessage);
     }
   );
 
-  const save2wasmCommand = vscode.commands.registerCommand(
+  const save2wasmCommand = commands.registerCommand(
     "wasm.save2wasm",
     (uri: Uri) => {
       const wasmPath = uri.path.replace(/\.wat$/, ".wasm");
@@ -56,21 +115,21 @@ export function activate(context: vscode.ExtensionContext) {
       const saveDialogOptions = {
         filters: {
           "WebAssembly Binary": ["wasm"],
-          "WebAssembly Text": ["wat", "wast"]
+          "WebAssembly Text": ["wat", "wast"],
         },
-        defaultUri: uri.with({ scheme: "file", path: wasmPath })
+        defaultUri: uri.with({ scheme: "file", path: wasmPath }),
       };
 
       const from = uri.with({ scheme: "file" });
 
-      vscode.window
+      window
         .showSaveDialog(saveDialogOptions)
-        .then(maybeSaveWasm(from), vscode.window.showErrorMessage);
+        .then(maybeSaveWasm(from), window.showErrorMessage);
     }
   );
 
-  if (vscode.window.activeTextEditor) {
-    showDocument(vscode.window.activeTextEditor.document);
+  if (window.activeTextEditor) {
+    showDocument(window.activeTextEditor.document);
   }
 
   context.subscriptions.push(
@@ -82,33 +141,36 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
-export function deactivate() {}
+export function deactivate(): Thenable<void> | undefined {
+  if (!client) {
+    return undefined;
+  }
+  return client.stop();
+}
 
-function showDocument(document: vscode.TextDocument): void {
+function showDocument(document: TextDocument): void {
   if (
     document.languageId === "wasm" &&
     document.uri.scheme !== "wasm-preview"
   ) {
-    vscode.commands
-      .executeCommand("workbench.action.closeActiveEditor")
-      .then(() => {
-        showPreview(document.uri);
-      }, vscode.window.showErrorMessage);
+    commands.executeCommand("workbench.action.closeActiveEditor").then(() => {
+      showPreview(document.uri);
+    }, window.showErrorMessage);
   }
 }
 
-function showPreview(uri: vscode.Uri): void {
+function showPreview(uri: Uri): void {
   if (uri.scheme === "wasm-preview") {
     return;
   }
 
-  vscode.commands
+  commands
     .executeCommand("vscode.open", uri.with({ scheme: "wasm-preview" }))
-    .then(null, vscode.window.showErrorMessage);
+    .then(null, window.showErrorMessage);
 }
 
-function maybeSaveWat(from: vscode.Uri) {
-  return (to: vscode.Uri | undefined) => {
+function maybeSaveWat(from: Uri) {
+  return (to: Uri | undefined) => {
     if (!to) {
       return;
     }
@@ -117,15 +179,15 @@ function maybeSaveWat(from: vscode.Uri) {
   };
 }
 
-async function saveWat(from: vscode.Uri, to: vscode.Uri) {
+async function saveWat(from: Uri, to: Uri) {
   const wasmContent = await readFile(from);
   const watContent = await wasm2wat(wasmContent);
 
   await writeFile(to, watContent);
 }
 
-function maybeSaveWasm(from: vscode.Uri) {
-  return (to: vscode.Uri | undefined) => {
+function maybeSaveWasm(from: Uri) {
+  return (to: Uri | undefined) => {
     if (!to) {
       return;
     }
@@ -134,7 +196,7 @@ function maybeSaveWasm(from: vscode.Uri) {
   };
 }
 
-async function saveWasm(from: vscode.Uri, to: vscode.Uri) {
+async function saveWasm(from: Uri, to: Uri) {
   const watContent = await readFile(from);
   const wasmContent = await wat2wasm(watContent);
 

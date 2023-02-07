@@ -1,0 +1,16 @@
+[package]
+name = "wai-language-server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde_json = "1.0.91"
+tokio = { version = "1.25.0", features = [
+    "rt",
+    "rt-multi-thread",
+    "macros",
+    "io-std",
+] }
+tower-lsp = "0.18.0"
