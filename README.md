@@ -2,9 +2,11 @@
   <img src='https://raw.githubusercontent.com/reklatsmasters/vscode-wasm/master/images/vscode-wasm-logo.png' width='200' alt='logo' />
   <h2 align='center'>WebAssembly for VSCode</h2>
   <p align='center'>
-    <!-- <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/version-short/dtsvet.vscode-wasm.svg?style=flat-square"></a>
-  <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://vsmarketplacebadge.apphb.com/installs/dtsvet.vscode-wasm.svg?style=flat-square"></a>
-  <a title="GitHub license button" href="https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE"><img src="https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg?style=flat-square"></a> -->
+    <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img src="https://img.shields.io/badge/--007ACC?logo=visual%20studio%20code&logoColor=ffffff"></a>
+    <a title="VS Code marketplace button" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm"><img alt="VS Code Marketplace Downloads" src="https://img.shields.io/visual-studio-marketplace/d/dtsvet.vscode-wasm"></a>
+    <a title="vscode-installs" href="https://marketplace.visualstudio.com/items?itemName=dtsvet.vscode-wasm">
+    <img alt="VS Code Marketplace Installs" src="https://img.shields.io/visual-studio-marketplace/i/dtsvet.vscode-wasm"></a>
+    <a title="GitHub license button" href="https://github.com/reklatsmasters/vscode-wasm/blob/master/LICENSE"><img src="https://img.shields.io/github/license/reklatsmasters/vscode-wasm.svg?style=flat-square"></a>
   </p>
 </p>
 
@@ -15,6 +17,7 @@ A Visual Studio Code extension with rich support for [WebAssembly](https://webas
 - Syntax highlight for WebAssembly textual representation.
 - Preview WebAssembly Binary files in 2 clicks.
 - Fast convertion between text and binary view.
+- Syntax highlight for WAI and WIT files.
 
 ![Syntax highlight](images/preview-1.png)
 
