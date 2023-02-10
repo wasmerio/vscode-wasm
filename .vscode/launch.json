@@ -7,15 +7,13 @@
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceRoot}"
-      ],
-      "stopOnEntry": false,
+      "args": ["--extensionDevelopmentPath=${workspaceRoot}"],
       "sourceMaps": true,
-      "outFiles": [
-        "${workspaceRoot}/out/**/*.js"
-      ],
-      "preLaunchTask": "npm: watch"
+      "outFiles": ["${workspaceRoot}/out/**/*.js"],
+      "preLaunchTask": "npm: watch",
+      "env": {
+        "SERVER_PATH": "${workspaceRoot}/wai-language-server/target/debug/wai-language-server"
+      }
     },
     {
       "name": "Extension Tests",
@@ -26,11 +24,8 @@
         "--extensionDevelopmentPath=${workspaceRoot}",
         "--extensionTestsPath=${workspaceRoot}/out/test"
       ],
-      "stopOnEntry": false,
       "sourceMaps": true,
-      "outFiles": [
-        "${workspaceRoot}/out/test/**/*.js"
-      ],
+      "outFiles": ["${workspaceRoot}/out/test/**/*.js"],
       "preLaunchTask": "npm: watch"
     }
   ]
