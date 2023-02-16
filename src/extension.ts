@@ -7,6 +7,7 @@ import {
   Uri,
   window,
   workspace,
+  QuickPickOptions,
 } from "vscode";
 
 import {
@@ -15,13 +16,37 @@ import {
   LanguageClient,
   LanguageClientOptions,
   ServerOptions,
+  URI,
 } from "vscode-languageclient/node";
 
 import WebAssemblyContentProvider from "./webassembly-content-provider";
 import { wasm2wat, wat2wasm, writeFile, readFile } from "./utils";
+import { QuickPickItem } from "vscode";
 
 let client: LanguageClient;
 // type a = Parameters<>;
+
+interface WaiFile {
+  fileName: string;
+  fileContent: Uint8Array;
+}
+
+enum BindingLanguage {
+  Rust = "Rust",
+  JavaScript = "JavaScript",
+  Python = "Python",
+  C = "C",
+}
+
+enum GenerationDirection {
+  Guest = "Guest",
+  Host = "Host",
+}
+
+enum GenerationType {
+  Import = "Import",
+  Export = "Export",
+}
 
 async function activateWAILsp(context: ExtensionContext) {
   context.globalState.update("inWaiFile", true);
@@ -59,6 +84,32 @@ async function activateWAILsp(context: ExtensionContext) {
     serverOptions,
     clientOptions
   );
+
+  client.onRequest(
+    "wai/saveFile",
+    async ({ fileName, fileContent }: WaiFile) => {
+      // get the current path of root folder
+      const rootPath = workspace.workspaceFolders?.[0].uri.path;
+      // get the current path of the file
+      const filePath = Uri.file(fileName).path;
+      // get the relative path of the file
+      const relativePath = filePath.replace(rootPath!, "");
+      // get the absolute path of the file
+      const absolutePath = Uri.file(fileName).fsPath;
+
+      // create a new file with the same name and content
+
+      writeFile(Uri.file(rootPath + "/" + fileName), Buffer.from(fileContent))
+        .then(() => {
+          return true;
+        })
+        .catch((err) => {
+          console.error(err);
+          return false;
+        });
+    }
+  );
+
   client.start();
 }
 
@@ -128,6 +179,116 @@ export function activate(context: ExtensionContext) {
     }
   );
 
+  const waiGenerateCommand = commands.registerCommand(
+    "wai.WAIGenerate",
+    async () => {
+      const generationDirectionQuickPickItems: Array<QuickPickItem> = [
+        {
+          label: GenerationDirection.Guest,
+          description: "Generate a guest file",
+        },
+        {
+          label: GenerationDirection.Host,
+          description: "Generate a host file",
+        },
+      ];
+
+      const generationTypeQuickPickItems: Array<QuickPickItem> = [
+        {
+          label: GenerationType.Import,
+          description: "Generate an import file",
+        },
+        {
+          label: GenerationType.Export,
+          description: "Generate an export file",
+        },
+      ];
+
+      const hostLanguageQuickPickItems: Array<QuickPickItem> = [
+        {
+          label: BindingLanguage.Rust,
+          description: "Generate a Rust file",
+        },
+        {
+          label: BindingLanguage.JavaScript,
+          description: "Generate a JavaScript file",
+        },
+        {
+          label: BindingLanguage.Python,
+          description: "Generate a Python file",
+        },
+      ];
+
+      const guestLanguageQuickPickItems: Array<QuickPickItem> = [
+        {
+          label: BindingLanguage.Rust,
+          description: "Generate a Rust file",
+        },
+        {
+          label: BindingLanguage.C,
+          description: "Generate a C file",
+        },
+      ];
+
+      const generationDirectionOptions: QuickPickOptions = {
+        placeHolder: "Select a generation type",
+      };
+      const languageOptions: QuickPickOptions = {
+        placeHolder: "Select a language for the generated bindings",
+      };
+      const generationTypeOptions: QuickPickOptions = {
+        placeHolder: "Select a generation type",
+      };
+
+      const generationDirectionSelection = await window.showQuickPick(
+        generationDirectionQuickPickItems,
+        generationDirectionOptions
+      );
+
+      if (!generationDirectionSelection) {
+        return;
+      }
+
+      let languageSelection = null;
+      if (generationDirectionSelection.label === GenerationDirection.Guest) {
+        languageSelection = await window.showQuickPick(
+          guestLanguageQuickPickItems,
+          languageOptions
+        );
+      } else {
+        languageSelection = await window.showQuickPick(
+          hostLanguageQuickPickItems,
+          languageOptions
+        );
+      }
+
+      if (!languageSelection) {
+        return;
+      }
+
+      const generationTypeSelection = await window.showQuickPick(
+        generationTypeQuickPickItems,
+        generationTypeOptions
+      );
+
+      if (!generationTypeSelection) {
+        return;
+      }
+
+      await client
+        .sendRequest("wai/generate-code", {
+          generation_direction: generationDirectionSelection.label,
+          binding_language: languageSelection.label,
+          generation_type: generationTypeSelection.label,
+          file_name: window.activeTextEditor?.document.fileName,
+          file_content: window.activeTextEditor?.document.getText(),
+        })
+        .then((response) => {
+          console.log(response);
+        });
+    }
+  );
+
   if (window.activeTextEditor) {
     showDocument(window.activeTextEditor.document);
   }
@@ -137,7 +298,8 @@ export function activate(context: ExtensionContext) {
     openEvent,
     previewCommand,
     save2watCommand,
-    save2wasmCommand
+    save2wasmCommand,
+    waiGenerateCommand
   );
 }
 

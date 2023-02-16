@@ -136,6 +136,16 @@
         "command": "wai-language-server.printVersion",
         "title": "Show WAI Version",
         "category": "wai"
+      },
+      {
+        "command": "wai-language-server.generateWAICode",
+        "title": "Generate WAI-Rust Code",
+        "category": "wai"
+      },
+      {
+        "command": "wai.WAIGenerate",
+        "title": "WAI Generate",
+        "category": "wai"
       }
     ],
     "menus": {
@@ -154,6 +164,11 @@
           "command": "wasm.save2wasm",
           "when": "resourceLangId == wat",
           "group": "wasm"
+        },
+        {
+          "command": "wai.WAIGenerate",
+          "when": "resourceLangId == wai",
+          "group": "wai"
         }
       ],
       "editor/context": [
@@ -166,6 +181,11 @@
           "command": "wasm.save2wasm",
           "when": "resourceLangId == wat",
           "group": "wasm"
+        },
+        {
+          "command": "wai.WAIGenerate",
+          "when": "resourceLangId == wai",
+          "group": "wai"
         }
       ],
       "editor/title/context": [
@@ -178,6 +198,11 @@
           "command": "wasm.save2wasm",
           "when": "resourceLangId == wat",
           "group": "wasm"
+        },
+        {
+          "command": "wai.WAIGenerate",
+          "when": "resourceLangId == wai",
+          "group": "wai"
         }
       ]
     }
