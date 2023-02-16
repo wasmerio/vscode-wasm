@@ -710,20 +710,40 @@ dependencies = [
 ]
 
 [[package]]
-name = "wai-bindgen-gen-core"
-version = "0.2.2"
+name = "wai-bindgen-gen-c"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c43a21791697e899140bb82c27db1fac26ad28ef60eddca55f05e5ca365a6e4c"
+checksum = "27fa8f89fb1598667785aa0919bed86706347681d9980db035ab797218437090"
+dependencies = [
+ "heck",
+ "wai-bindgen-gen-core",
+]
+
+[[package]]
+name = "wai-bindgen-gen-core"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aa3dc41b510811122b3088197234c27e08fcad63ef936306dd8e11e2803876c"
 dependencies = [
  "anyhow",
  "wai-parser",
 ]
 
 [[package]]
-name = "wai-bindgen-gen-rust"
-version = "0.2.2"
+name = "wai-bindgen-gen-js"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd86fcd3046f63882137f46723c643b7cc33ea4c739c0f9999c6bd76f4ae21f2"
+checksum = "15c332312eedd2fc9c38c36f6b2dec42e5a025159c9a724f874308e5d2b63d32"
+dependencies = [
+ "heck",
+ "wai-bindgen-gen-core",
+]
+
+[[package]]
+name = "wai-bindgen-gen-rust"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "19bc05e8380515c4337c40ef03b2ff233e391315b178a320de8640703d522efe"
 dependencies = [
  "heck",
  "wai-bindgen-gen-core",
@@ -741,23 +761,49 @@ dependencies = [
 ]
 
 [[package]]
+name = "wai-bindgen-gen-wasmer"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0f61484185d8c520a86d5a7f7f8265f446617c2f9774b2e20a52de19b6e53432"
+dependencies = [
+ "heck",
+ "wai-bindgen-gen-core",
+ "wai-bindgen-gen-rust",
+]
+
+[[package]]
+name = "wai-bindgen-gen-wasmer-py"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85142056b8563d6a6aecab5c06e0d4a9b7aeebf14b9c5030aad5c35746a591e1"
+dependencies = [
+ "heck",
+ "wai-bindgen-gen-core",
+]
+
+[[package]]
 name = "wai-language-server"
 version = "0.1.0"
 dependencies = [
  "dashmap",
+ "serde",
  "serde_json",
  "tokio",
  "tower-lsp",
  "wai-bindgen",
+ "wai-bindgen-gen-c",
  "wai-bindgen-gen-core",
+ "wai-bindgen-gen-js",
  "wai-bindgen-gen-rust-wasm",
+ "wai-bindgen-gen-wasmer",
+ "wai-bindgen-gen-wasmer-py",
 ]
 
 [[package]]
 name = "wai-parser"
-version = "0.2.2"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2811f0b0c8883f92b9c616b6c38a1b462dc37d04cfc700be60e4990497ed1f7d"
+checksum = "9bd0acb6d70885ea0c343749019ba74f015f64a9d30542e66db69b49b7e28186"
 dependencies = [
  "anyhow",
  "id-arena",
