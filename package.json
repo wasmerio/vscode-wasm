@@ -2,8 +2,8 @@
   "name": "vscode-wasm",
   "displayName": "WebAssembly",
   "description": "WebAssembly Toolkit for VSCode",
-  "version": "1.4.0",
-  "publisher": "dtsvet",
+  "version": "1.4.1",
+  "publisher": "wasmer",
   "license": "MIT",
   "icon": "images/vscode-wasm-logo.png",
   "engines": {
