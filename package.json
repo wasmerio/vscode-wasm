@@ -21,6 +21,14 @@
     "Programming Languages",
     "Other"
   ],
+  "activationEvents": [
+    "onLanguage:wasm",
+    "onLanguage:wai",
+    "onLanguage:wat",
+    "onCommand:wasm.wasm2wat",
+    "onCommand:wasm.save2wat",
+    "onCommand:wasm.save2wasm"
+  ],
   "main": "./out/extension",
   "contributes": {
     "languages": [
@@ -220,17 +228,16 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.18.11",
-    "typescript": "^4.4.3",
-    "vscode": "^1.1.37"
+    "typescript": "^4.4.3"
   },
   "dependencies": {
-    "vscode-languageclient": "^8.0.2",
-    "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.6.0/npm/wasmer/wabt/wabt-1.0.37.tar.gz"
+    "@types/vscode": "^1.76.0",
+    "@wasmer/wabt": "https://registry-cdn.wapm.io/bindings/generator-0.6.0/npm/wasmer/wabt/wabt-1.0.37.tar.gz",
+    "vscode-languageclient": "^8.0.2"
   }
 }
