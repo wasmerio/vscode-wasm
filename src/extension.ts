@@ -115,7 +115,7 @@ async function activateWAILsp(context: ExtensionContext) {
 
 export function activate(context: ExtensionContext) {
   // starting the language server for WAI
-  activateWAILsp(context);
+  // activateWAILsp(context);
 
   const provider = new WebAssemblyContentProvider();
 
