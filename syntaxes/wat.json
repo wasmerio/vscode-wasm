@@ -636,7 +636,7 @@
             {
               "comment": "Type name [GC]",
               "name": "entity.name.type.wat",
-              "match": "\\b(?:i8|i16|funcref|externref|anyref|eqref|i31ref|nullfuncref|nullexternref|structref|arrayref|nullref)\\b(?!\\.)"
+              "match": "\\b(?:i8|i16|ref|funcref|externref|anyref|eqref|i31ref|nullfuncref|nullexternref|structref|arrayref|nullref)\\b(?!\\.)"
             }
           ]
         },

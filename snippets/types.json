@@ -130,5 +130,9 @@
   "field": {
     "body": "field",
     "prefix": "field"
+  },
+  "ref": {
+    "body": "ref",
+    "prefix": "ref"
   }
 }
