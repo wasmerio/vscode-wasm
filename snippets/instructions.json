@@ -2134,5 +2134,113 @@
   "select": {
     "body": "select",
     "prefix": "select"
+  },
+  "ref.eq": {
+    "body": "ref.eq",
+    "prefix": "ref.eq"
+  },
+  "ref.test": {
+    "body": "ref.test",
+    "prefix": "ref.test"
+  },
+  "ref.cast": {
+    "body": "ref.cast",
+    "prefix": "ref.cast"
+  },
+  "br_on_non_null": {
+    "body": "br_on_non_null ",
+    "prefix": "br_on_non_null"
+  },
+  "br_on_cast": {
+    "body": "br_on_cast ",
+    "prefix": "br_on_cast"
+  },
+  "br_on_cast_fail": {
+    "body": "br_on_cast_fail ",
+    "prefix": "br_on_cast_fail"
+  },
+  "struct.new_canon": {
+    "body": "struct.new_canon ",
+    "prefix": "struct.new_canon"
+  },
+  "struct.new_canon_default": {
+    "body": "struct.new_canon_default ",
+    "prefix": "struct.new_canon_default"
+  },
+  "struct.get": {
+    "body": "struct.get ",
+    "prefix": "struct.get"
+  },
+  "struct.get_s": {
+    "body": "struct.get_s ",
+    "prefix": "struct.get_s"
+  },
+  "struct.get_u": {
+    "body": "struct.get_u ",
+    "prefix": "struct.get_u"
+  },
+  "struct.set": {
+    "body": "struct.set ",
+    "prefix": "struct.set"
+  },
+  "array.new_canon": {
+    "body": "array.new_canon ",
+    "prefix": "array.new_canon"
+  },
+  "array.new_canon_default": {
+    "body": "array.new_canon_default ",
+    "prefix": "array.new_canon_default"
+  },
+  "array.get": {
+    "body": "array.get ",
+    "prefix": "array.get"
+  },
+  "array.get_s": {
+    "body": "array.get_s ",
+    "prefix": "array.get_s"
+  },
+  "array.get_u": {
+    "body": "array.get_u ",
+    "prefix": "array.get_u"
+  },
+  "array.set": {
+    "body": "array.set ",
+    "prefix": "array.set"
+  },
+  "array.len": {
+    "body": "array.len",
+    "prefix": "array.len"
+  },
+  "array.new_canon_fixed": {
+    "body": "array.new_canon_fixed ",
+    "prefix": "array.new_canon_fixed"
+  },
+  "array.new_canon_data": {
+    "body": "array.new_canon_data ",
+    "prefix": "array.new_canon_data"
+  },
+  "array.new_canon_elem": {
+    "body": "array.new_canon_elem ",
+    "prefix": "array.new_canon_elem"
+  },
+  "i31.new": {
+    "body": "i31.new",
+    "prefix": "i31.new"
+  },
+  "i31.get_s": {
+    "body": "i31.get_s",
+    "prefix": "i31.get_s"
+  },
+  "i31.get_u": {
+    "body": "i31.get_u",
+    "prefix": "i31.get_u"
+  },
+  "extern.internalize": {
+    "body": "extern.internalize",
+    "prefix": "extern.internalize"
+  },
+  "extern.externalize": {
+    "body": "extern.externalize",
+    "prefix": "extern.externalize"
   }
 }

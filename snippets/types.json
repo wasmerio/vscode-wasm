@@ -34,5 +34,105 @@
   "exnref": {
     "body": "exnref",
     "prefix": "exnref"
+  },
+  "i8": {
+    "body": "i8",
+    "prefix": "i8"
+  },
+  "i16": {
+    "body": "i16",
+    "prefix": "i16"
+  },
+  "anyref": {
+    "body": "anyref",
+    "prefix": "anyref"
+  },
+  "eqref": {
+    "body": "eqref",
+    "prefix": "eqref"
+  },
+  "i31ref": {
+    "body": "i31ref",
+    "prefix": "i31ref"
+  },
+  "nullfuncref": {
+    "body": "nullfuncref",
+    "prefix": "nullfuncref"
+  },
+  "nullexternref": {
+    "body": "nullexternref",
+    "prefix": "nullexternref"
+  },
+  "structref": {
+    "body": "structref",
+    "prefix": "structref"
+  },
+  "arrayref": {
+    "body": "arrayref",
+    "prefix": "arrayref"
+  },
+  "type": {
+    "body": "type",
+    "prefix": "type"
+  },
+  "func": {
+    "body": "func",
+    "prefix": "func"
+  },
+  "extern": {
+    "body": "extern",
+    "prefix": "extern"
+  },
+  "any": {
+    "body": "any",
+    "prefix": "any"
+  },
+  "eq": {
+    "body": "eq",
+    "prefix": "eq"
+  },
+  "i31": {
+    "body": "i31",
+    "prefix": "i31"
+  },
+  "nofunc": {
+    "body": "nofunc",
+    "prefix": "nofunc"
+  },
+  "noextern": {
+    "body": "noextern",
+    "prefix": "noextern"
+  },
+  "struct": {
+    "body": "struct",
+    "prefix": "struct"
+  },
+  "array": {
+    "body": "array",
+    "prefix": "array"
+  },
+  "none": {
+    "body": "none",
+    "prefix": "none"
+  },
+  "sub": {
+    "body": "sub",
+    "prefix": "sub"
+  },
+  "final": {
+    "body": "final",
+    "prefix": "final"
+  },
+  "rec": {
+    "body": "rec",
+    "prefix": "rec"
+  },
+  "field": {
+    "body": "field",
+    "prefix": "field"
+  },
+  "ref": {
+    "body": "ref",
+    "prefix": "ref"
   }
 }
